@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="RegistaMaster.Application/RegistaMaster.Application.csproj" />
+    <Project Path="RegistaMaster.Domain/RegistaMaster.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="RegistaMaster.Infrastructure/RegistaMaster.Infrastructure.csproj" />
+    <Project Path="RegistaMaster.Persistance/RegistaMaster.Persistance.csproj" />
+  </Folder>
+  <Folder Name="/Presentation/">
+    <Project Path="RegistaMaster.Api/RegistaMaster.Api.csproj" Id="c38ab9e4-4611-472e-a223-a8bf784556dd" />
+    <Project Path="RegistaMaster.WebApp/RegistaMaster.WebApp.csproj" Id="47d64c6c-ca6a-42af-bbc3-94b48489f734" />
+  </Folder>
+</Solution>
