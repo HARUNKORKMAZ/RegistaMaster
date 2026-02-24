@@ -22,19 +22,35 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       get => _repository ?? (_repository = new Repository(context, session));
     }
-     private readonly IActionNoteRepository _actionNoteRepository;
-    public IActionNoteRepository ActionNoteRepository { 
+    private readonly IActionNoteRepository _actionNoteRepository;
+    public IActionNoteRepository ActionNoteRepository
+    {
       get => _actionNoteRepository ?? new ActionNoteRepository(context, session, this);
     }
     private readonly IHomeRepository _homeRepository;
-    public IHomeRepository HomeRepository { 
+    public IHomeRepository HomeRepository
+    {
       get => _homeRepository ?? new HomeRepository(context, this, session);
     }
 
     private readonly ICustomerRepository _customerRepository;
-    public ICustomerRepository CustomerRepository { 
+    public ICustomerRepository CustomerRepository
+    {
       get => _customerRepository ?? new CustomerRepository(context, session, this);
     }
+
+    IActionRepository _actionRepository;
+    public IActionRepository ActionRepository
+    {
+      get => _actionRepository ?? new ActionRepository(context, session, this);
+    }
+
+    public IUserRepository _userRepository;
+    public IUserRepository UserRepository
+    {
+      get => _userRepository ?? new UserRepository(context, this, session);
+    }
+
 
 
     public async Task<int> SaveChanges()

@@ -5,10 +5,11 @@ namespace RegistaMaster.Application.Repositories
   public interface IUnitOfWork
   {
     IRepository Repository { get; }
+    IActionRepository ActionRepository { get; }
     IActionNoteRepository ActionNoteRepository { get; }
     IHomeRepository HomeRepository { get; }
     ICustomerRepository CustomerRepository { get; }
-
+    IUserRepository UserRepository { get; }
 
 
 
