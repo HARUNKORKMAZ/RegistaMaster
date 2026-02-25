@@ -1,0 +1,28 @@
+﻿using RegistaMaster.Domain.Entities;
+using RegistaMaster.Domain.Enums;
+
+namespace RegistaMaster.Domain.DTOModels.Entities.RequestModels
+{
+  public class RequestGridDTO
+  {
+    public int ID { get; set; }
+    public int CreatedBy { get; set; }
+    public string Subject { get; set; }
+    public string Description { get; set; }
+    public int? CategoryID { get; set; }
+    public int? NotificationTypeID { get; set; }
+    public string? PageURL { get; set; }
+    public string? PictureURL { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime? CreatedOn { get; set; }
+    public DateTime PlannetEndDate { get; set; }
+    public RequestStatus RequestStatus { get; set; }
+    public int NotificationID { get; set; }
+    public int? VersionID { get; set; }
+    public int? ModuleID { get; set; }
+    public int ProjectID { get; set; }
+    public string Color { get; set; }
+    public ICollection<RequestFile> Files { get; set; }
+
+  }
+}

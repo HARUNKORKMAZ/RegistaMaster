@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+			<PackageReference Include="RegistPackets.FileService" Version="1.0.4" />
+			<PackageReference Include="RegistaPackets.Responder" Version="1.0.5" />
+
     <ProjectReference Include="..\RegistaMaster.Domain\RegistaMaster.Domain.csproj" />
   </ItemGroup>
 

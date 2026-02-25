@@ -10,6 +10,7 @@ namespace RegistaMaster.Application.Repositories
     IHomeRepository HomeRepository { get; }
     ICustomerRepository CustomerRepository { get; }
     IUserRepository UserRepository { get; }
+    IRequestRepository RequestRepository { get; }
 
 
 

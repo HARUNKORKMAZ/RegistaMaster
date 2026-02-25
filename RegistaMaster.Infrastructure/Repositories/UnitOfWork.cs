@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using RegistaMaster.Application.Repositories;
 using RegistaMaster.Application.Services.SecurityService;
 using RegistaMaster.Domain.DTOModels.SecurityModels;
 using RegistaMaster.Persistance.RegistaMasterContextes;
+using RegistPackets.FileService.Interfaces;
 
 namespace RegistaMaster.Infrastructure.Repositories
 {
@@ -11,11 +13,13 @@ namespace RegistaMaster.Infrastructure.Repositories
     private readonly RegistaMasterContext context;
     private readonly SessionModel session;
     private readonly IConfiguration config;
-    public UnitOfWork(RegistaMasterContext _context, ISessionService sessionService, IConfiguration _config)
+    private readonly IFileService fileService;
+    public UnitOfWork(RegistaMasterContext _context, ISessionService sessionService, IConfiguration _config, IFileService _fileService)
     {
       session = sessionService.GetInjection();
       context = _context;
       config = _config;
+      fileService = _fileService;
     }
     private IRepository _repository;
     public IRepository Repository
@@ -49,6 +53,11 @@ namespace RegistaMaster.Infrastructure.Repositories
     public IUserRepository UserRepository
     {
       get => _userRepository ?? new UserRepository(context, this, session);
+    }
+
+    public IRequestRepository _requestRepository;
+    public IRequestRepository RequestRepository {
+      get => _requestRepository ?? new RequestRepository(context, session ,this , config,fileService);
     }
 
 
