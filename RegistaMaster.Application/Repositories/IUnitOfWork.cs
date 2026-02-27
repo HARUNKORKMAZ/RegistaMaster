@@ -11,6 +11,7 @@ namespace RegistaMaster.Application.Repositories
     ICustomerRepository CustomerRepository { get; }
     IUserRepository UserRepository { get; }
     IRequestRepository RequestRepository { get; }
+    IProjectRepository ProjectRepository { get; }
 
 
 

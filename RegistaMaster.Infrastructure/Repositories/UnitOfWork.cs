@@ -26,39 +26,49 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       get => _repository ?? (_repository = new Repository(context, session));
     }
-    private readonly IActionNoteRepository _actionNoteRepository;
+
+    private  IActionNoteRepository _actionNoteRepository;
     public IActionNoteRepository ActionNoteRepository
     {
-      get => _actionNoteRepository ?? new ActionNoteRepository(context, session, this);
+      get => _actionNoteRepository ?? (_actionNoteRepository = new ActionNoteRepository(context, session, this));
     }
-    private readonly IHomeRepository _homeRepository;
+
+    private  IHomeRepository _homeRepository;
     public IHomeRepository HomeRepository
     {
-      get => _homeRepository ?? new HomeRepository(context, this, session);
+      get => _homeRepository ?? (_homeRepository = new HomeRepository(context, this, session));
     }
 
-    private readonly ICustomerRepository _customerRepository;
+    private  ICustomerRepository _customerRepository;
     public ICustomerRepository CustomerRepository
     {
-      get => _customerRepository ?? new CustomerRepository(context, session, this);
+      get => _customerRepository ??(_customerRepository =  new CustomerRepository(context, session, this));
     }
 
-    IActionRepository _actionRepository;
+    private IActionRepository _actionRepository;
     public IActionRepository ActionRepository
     {
-      get => _actionRepository ?? new ActionRepository(context, session, this);
+      get => _actionRepository ??(_actionRepository =  new ActionRepository(context, session, this));
     }
 
-    public IUserRepository _userRepository;
+    private IUserRepository _userRepository;
     public IUserRepository UserRepository
     {
-      get => _userRepository ?? new UserRepository(context, this, session);
+      get => _userRepository ?? (_userRepository = new UserRepository(context, this, session));
     }
 
-    public IRequestRepository _requestRepository;
-    public IRequestRepository RequestRepository {
-      get => _requestRepository ?? new RequestRepository(context, session ,this , config,fileService);
+    private IRequestRepository _requestRepository;
+    public IRequestRepository RequestRepository
+    {
+      get => _requestRepository ??(_requestRepository=  new RequestRepository(context, session, this, config, fileService));
     }
+
+    private IProjectRepository _projectRepository;
+    public IProjectRepository ProjectRepository
+    {
+      get => _projectRepository ?? (_projectRepository = new ProjectRepository(this, context, session));
+    }
+
 
 
 

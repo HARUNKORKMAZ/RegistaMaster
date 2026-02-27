@@ -31,6 +31,7 @@ namespace RegistaMaster.Application.Repositories
     Task<List<SelectListItem>> GetVersionList(int id);
     Task<string> CompleteRequest(int id);
     Task<string> AddRequestFiles(List<IFormFile> file, int Id);
+    Task<string> DeleteRequestFiles(List<string> filesId);
     Task<string> DeleteFilesWithRequestID(int id);
     Task<string> RequestDeleteWithActions(int id);
     Task<string> RequestDelete(int id);

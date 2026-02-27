@@ -141,6 +141,27 @@ namespace RegistaMaster.Infrastructure.Repositories
       }
     }
 
+    public async Task<string> DeleteRequestFiles(List<string> filesId)
+    {
+      try
+      {
+        List<RequestFile> files = new();
+        foreach (string fileId in filesId)
+        {
+          files.Add(await GetById<RequestFile>(Convert.ToInt32(fileId)));
+        }
+        await DeleteRange<RequestFile>(files);
+        await unitOfWork.SaveChanges();
+        return "";
+
+      }
+      catch (Exception e)
+      {
+
+        throw e;
+      }
+    }
+
     public async Task<List<ActionDTO>> GetActionDetail(int RequestId)
     {
       var model = await GetNonDeletedAndActive<Action>(t => t.RequestId == RequestId).Select(s => new ActionDTO()
