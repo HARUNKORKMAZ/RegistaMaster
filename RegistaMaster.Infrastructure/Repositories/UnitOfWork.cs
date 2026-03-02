@@ -69,6 +69,16 @@ namespace RegistaMaster.Infrastructure.Repositories
       get => _projectRepository ?? (_projectRepository = new ProjectRepository(this, context, session));
     }
 
+    private IVersionRepository _versionRepository;
+    public IVersionRepository VersionRepository{
+      get => _versionRepository ?? (_versionRepository= new VersionRepository(this , session, context));
+    }
+
+    private IModuleRepository _moduleRepository;
+    public IModuleRepository ModuleRepository
+    {
+      get => _moduleRepository ?? (_moduleRepository = new ModuleRepository(this, context, session));
+    }
 
 
 

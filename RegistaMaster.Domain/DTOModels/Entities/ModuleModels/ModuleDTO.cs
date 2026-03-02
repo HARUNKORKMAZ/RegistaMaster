@@ -1,0 +1,17 @@
+﻿using System.ComponentModel;
+
+namespace RegistaMaster.Domain.DTOModels.Entities.ModuleModels
+{
+  public class ModuleDTO
+  {
+    public int Id { get; set; }
+
+    [DisplayName("Modül Adı")]
+    public string Name { get; set; }
+
+    [DisplayName("Modül Açıklaması")]
+    public string Description { get; set; }
+    public  int  ProjectID { get; set; }
+
+  }
+}
