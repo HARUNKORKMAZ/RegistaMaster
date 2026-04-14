@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations.Internal;
 using RegistaMaster.Application.Repositories;
 using RegistaMaster.Domain.DTOModels.Entities.ProjectModels;
+using RegistaMaster.Domain.DTOModels.Entities.VersionModels;
 using RegistaMaster.Domain.DTOModels.SecurityModels;
 using RegistaMaster.Domain.Entities;
 using RegistaMaster.Domain.Enums;
@@ -30,7 +31,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         await unitOfWork.SaveChanges();
         var version = new VersionDTO()
         {
-          ProjectID = model.Id,
+          ProjectId = model.Id,
           DatabaseChange = true,
           Name = "V1.0"
         };

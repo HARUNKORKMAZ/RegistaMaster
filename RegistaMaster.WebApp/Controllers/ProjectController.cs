@@ -2,6 +2,7 @@
 using RegistaMaster.Application.Repositories;
 using RegistaMaster.Domain.DTOModels.Entities.ModuleModels;
 using RegistaMaster.Domain.DTOModels.Entities.ProjectModels;
+using RegistaMaster.Domain.DTOModels.Entities.ProjectNoteModels;
 using RegistaMaster.Domain.DTOModels.Entities.VersionModels;
 using RegistaMaster.Domain.Entities;
 using SixLabors.ImageSharp.Metadata;

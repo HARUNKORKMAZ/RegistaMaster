@@ -14,7 +14,10 @@ namespace RegistaMaster.Application.Repositories
     IProjectRepository ProjectRepository { get; }
     IVersionRepository VersionRepository { get; }
     IModuleRepository ModuleRepository { get; }
-
+    IProjectNoteRepository ProjectNoteRepository { get; }
+    IUserTaskRepository UserTaskRepository { get; }
+    IErrorLogRepository ErrorLogRepository { get; }
+    IFoodChartRepository FoodChartRepository { get; }
 
 
     Task<int> SaveChanges();

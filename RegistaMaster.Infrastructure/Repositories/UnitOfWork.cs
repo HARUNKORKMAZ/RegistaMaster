@@ -80,7 +80,27 @@ namespace RegistaMaster.Infrastructure.Repositories
       get => _moduleRepository ?? (_moduleRepository = new ModuleRepository(this, context, session));
     }
 
+    private IProjectNoteRepository _projectNoteRepository;
+    public IProjectNoteRepository ProjectNoteRepository
+    {
+      get => _projectNoteRepository ?? (_projectNoteRepository = new ProjectNoteRepository(context, this, session));
+    }
+    private IUserTaskRepository _userTaskRepository;
+    public IUserTaskRepository UserTaskRepository
+    {
+      get => _userTaskRepository ?? (_userTaskRepository = new UserTaskRepository(context, session,this));
+    }
 
+    private IErrorLogRepository _errorLogRepository;
+    public IErrorLogRepository ErrorLogRepository
+    {
+      get => _errorLogRepository ?? (_errorLogRepository = new ErrorLogRepository(context, session,this));
+    }
+    private IFoodChartRepository _foodChartRepository;
+    public IFoodChartRepository FoodChartRepository
+    {
+      get => _foodChartRepository ?? (_foodChartRepository = new FoodChartsRepository(context, session, this));
+    }
 
     public async Task<int> SaveChanges()
     {

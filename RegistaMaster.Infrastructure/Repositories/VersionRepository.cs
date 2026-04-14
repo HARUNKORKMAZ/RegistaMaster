@@ -51,7 +51,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       }
     }
 
-    public async Task<string> DeleteVersinWithProjectId(int Id)
+    public async Task<string> DeleteVersionWithProjectId(int Id)
     {
       var version = GetNonDeletedAndActive<Version>(t => t.ProjectId == Id);
       await DeleteRange(version.ToList());
