@@ -102,6 +102,17 @@ namespace RegistaMaster.Infrastructure.Repositories
       get => _foodChartRepository ?? (_foodChartRepository = new FoodChartsRepository(context, session, this));
     }
 
+    private  IUserLogRepository _userLogRepository;
+    public IUserLogRepository UserLogRepository
+    {
+      get => _userLogRepository ?? (_userLogRepository = new UserLogRepository(context, session, this));
+    }
+    private IHealthCheckRepository _healthCheckRepository;
+    public IHealthCheckRepository HealthCheckRepository
+    {
+      get => _healthCheckRepository ?? (_healthCheckRepository = new HealthCheckRepository(context, session, this));
+    }
+
     public async Task<int> SaveChanges()
     {
       try

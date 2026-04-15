@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using RegistaMaster.Application.Features.Auth;
 using RegistaMaster.Application.Repositories;
 using RegistaMaster.Domain.DTOModels.SecurityModels;
 using RegistaMaster.Domain.Enums;
@@ -20,6 +21,7 @@ namespace RegistaMaster.WebApp.Controllers
       unitOfWork = _unitOfWork;
       session = unitOfWork.GetSession();
     }
+    [Auth]
     public async Task<IActionResult> Index()
     {
       switch (session.Authorization)

@@ -18,7 +18,8 @@ namespace RegistaMaster.Application.Repositories
     IUserTaskRepository UserTaskRepository { get; }
     IErrorLogRepository ErrorLogRepository { get; }
     IFoodChartRepository FoodChartRepository { get; }
-
+    IUserLogRepository UserLogRepository { get; }
+    IHealthCheckRepository HealthCheckRepository { get; }
 
     Task<int> SaveChanges();
     SessionModel GetSession();
