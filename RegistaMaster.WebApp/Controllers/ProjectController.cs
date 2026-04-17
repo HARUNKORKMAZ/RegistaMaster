@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using RegistaMaster.Application.Repositories;
 using RegistaMaster.Domain.DTOModels.Entities.ModuleModels;
 using RegistaMaster.Domain.DTOModels.Entities.ProjectModels;
@@ -18,7 +20,7 @@ namespace RegistaMaster.WebApp.Controllers
     }
 
     //PROJE
-    public async Task<object> GetList(DataSourceLoadOption options)
+    public async Task<object> GetList(DataSourceLoadOptions options)
     {
       var models = await unitOfWork.ProjectRepository.GetList();
       return DataSourceLoader.Load(models, options);
@@ -164,7 +166,7 @@ namespace RegistaMaster.WebApp.Controllers
     {
       try
       {
-        return await unitOfWork.ModuleRepository.GetModule(id);
+        return await unitOfWork.ModuleRepository.GetModules(id);
       }
       catch (Exception e)
       {

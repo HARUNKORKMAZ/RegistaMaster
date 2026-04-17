@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Newtonsoft.Json;
 using RegistaMaster.Application.Repositories;
@@ -18,7 +20,7 @@ namespace RegistaMaster.WebApp.Controllers
     {
       return View();
     }
-    public async Task<object> GetList(DataSourceLoadOption option)
+    public async Task<object> GetList(DataSourceLoadOptions option)
     {
       var models = unitOfWork.FoodChartRepository.GetList();
       return DataSourceLoader.Load(models, option);

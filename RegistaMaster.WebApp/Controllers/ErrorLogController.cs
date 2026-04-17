@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using RegistaMaster.Application.Repositories;
 
 namespace RegistaMaster.WebApp.Controllers
@@ -16,7 +18,7 @@ namespace RegistaMaster.WebApp.Controllers
     {
       return View();
     }
-    public async Task<object> GetList(DataSourceLoadOption option)
+    public async Task<object> GetList(DataSourceLoadOptions option)
     {
       var model = unitOfWork.ErrorLogRepository.GetList();
       return DataSourceLoader.Load(model, option);

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using RegistaMaster.Application.Repositories;
@@ -170,7 +172,7 @@ namespace RegistaMaster.WebApp.Controllers
       try
       {
         var model = await unitOfWork.RequestRepository.GetModeluSelect();
-        return DataSourceLoader.Get(model, loadOptions);
+        return DataSourceLoader.Load(model, loadOptions);
       }
       catch (Exception e)
       {
@@ -183,7 +185,7 @@ namespace RegistaMaster.WebApp.Controllers
       try
       {
         var model = await unitOfWork.RequestRepository.GetVersionSelect();
-        return DataSourceLoder.Load(model, loadOptions);
+        return DataSourceLoader.Load(model, loadOptions);
       }
       catch (Exception e)
       {
@@ -238,7 +240,7 @@ namespace RegistaMaster.WebApp.Controllers
     {
       try
       {
-        return await unitOfWork.RequestRepository.RequestDeleteWithActions(id);
+        return await unitOfWork.RequestRepository.RequestDeleteWithActions(ID);
       }
       catch (Exception)
       {

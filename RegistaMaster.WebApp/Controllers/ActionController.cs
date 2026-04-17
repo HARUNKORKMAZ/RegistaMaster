@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RegistaMaster.Application.Repositories;
 using RegistaMaster.Domain.DTOModels.Entities.ActionModels;
@@ -35,7 +37,7 @@ namespace RegistaMaster.WebApp.Controllers
       try
       {
         var model = unitOfWork.ActionRepository.GetList().OrderByDescending(t => t.Id);
-        return DataSourceLoader.load(model, options);
+        return DataSourceLoader.Load(model, options);
       }
       catch (Exception e)
       {
@@ -73,7 +75,7 @@ namespace RegistaMaster.WebApp.Controllers
       }
     }
 
-    public async Task<object> GetResponsible(DataSourceLoadOption loadOption)
+    public async Task<object> GetResponsible(DataSourceLoadOptions loadOption)
     {
       try
       {
@@ -87,7 +89,7 @@ namespace RegistaMaster.WebApp.Controllers
       }
     }
 
-    public async Task<object> GetCreateBy(DataSourceLoadOption loadOption)
+    public async Task<object> GetCreateBy(DataSourceLoadOptions loadOption)
     {
       try
       {
@@ -100,7 +102,7 @@ namespace RegistaMaster.WebApp.Controllers
         throw;
       }
     }
-    public async Task<object> GetRequest(DataSourceLoadOption loadOption)
+    public async Task<object> GetRequest(DataSourceLoadOptions loadOption)
     {
       try
       {
@@ -166,7 +168,7 @@ namespace RegistaMaster.WebApp.Controllers
       }
     }
 
-    public async Task<object> GetActionNoteList(DataSourceLoadOption loadOption, int Id)
+    public async Task<object> GetActionNoteList(DataSourceLoadOptions loadOption, int Id)
     {
       try
       {

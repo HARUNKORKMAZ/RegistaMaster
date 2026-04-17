@@ -1,3 +1,5 @@
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RegistaMaster.Application.Features.Auth;
@@ -36,7 +38,7 @@ namespace RegistaMaster.WebApp.Controllers
           ViewBag.Chart = await unitOfWork.HomeRepository.DeveloperChart(session.Id);
           break;
       }
-      ViewBag.Responsible = await unitOfWork.RequestRepository.ResponsibleSelectList();
+      ViewBag.Responsible = await unitOfWork.RequestRepository.ResponsibleSelecetList();
       return View();
     }
 
@@ -56,7 +58,7 @@ namespace RegistaMaster.WebApp.Controllers
     public async Task<object> GetActionHome(DataSourceLoadOptions options)
     {
       var model = await unitOfWork.HomeRepository.GetActionDTOHome();
-      return DataSourceLoader.load(model, options);
+      return DataSourceLoader.Load(model, options);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
