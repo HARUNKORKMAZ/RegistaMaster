@@ -18,14 +18,14 @@ namespace RegistaMaster.WebApp.Controllers
     }
     public async Task<IActionResult> Index()
     {
-      ViewBag.Responsible = await unitOfWork.RequestRepository.ResponsibleSelectList();
+      ViewBag.Responsible = await unitOfWork.RequestRepository.ResponsibleSelecetList();
       return View();
     }
     [HttpGet]
     public async Task<IActionResult> Create()
     {
       var model = new ActionDTO();
-      model.ResponsibleHelperModelList = await unitOfWork.RequestRepository.ResponsibleSelectList();
+      model.ResponsibleHelperModelList = await unitOfWork.RequestRepository.ResponsibleSelecetList();
       model.OpeningDate = DateTime.Now;
       model.EndDate = DateTime.Now;
       return View(model);
@@ -117,7 +117,7 @@ namespace RegistaMaster.WebApp.Controllers
     {
       try
       {
-        return await unitOfWork.ActionRepository.ActionUpdate();
+        return await unitOfWork.ActionRepository.ActionUpdate(model);
       }
       catch (Exception e)
       {
@@ -139,7 +139,7 @@ namespace RegistaMaster.WebApp.Controllers
       }
     }
     [HttpPost]
-    public async Task<string> ChangeActionStatus(ActionDTO model)
+    public async Task<string> ChangeActionStatus(ActionPageDTO model)
     {
       try
       {

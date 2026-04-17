@@ -1,0 +1,114 @@
+﻿@model RegistaMaster.Domain.DTOModels.Entities.UserModels.UserDetailDTO;
+@{
+  ViewData["Title"] = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+  var user = session.GetUser();
+}
+<input type="hidden" id="userID" value="@user.Id" />
+<input type="hidden" id="auth" value="@Convert.ToInt32(user.Authorization)" />
+<h1>Kullanıcılar</h1>
+
+<style>
+
+</style>
+<link href="/Modernize/DevextremeCss/css/dx.common.css" rel="stylesheet" />
+<link href="/Modernize/DevextremeCss/css/dx.light.css" rel="stylesheet" />
+
+<div class="main-content">
+  <div class="row">
+    <div class="col-12" style="padding-top: 40px; padding-right: 40px; padding-left: 40px;">
+      <h3>Kullanıcılar</h3>
+      <hr />
+      <div class="demo-container">
+        <div id="userGridContainer"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Kullanıcı ekle/düzenle modal-->
+<div class="modal fade" id="UserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="UserModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title h3" id="UserModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <hr />
+      <div class="modal-body" id="clear">
+        <form>
+          <div class="row">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group col-md-12">
+              <label style="font-weight:bold;padding-bottom:2px">Ad:<span class="text-danger">*</span></label>
+              <input asp-for="Name" type="text" required class="form-control" name="Name" />
+              <h1></h1>
+            </div>
+            <div class="form-group col-md-12 mt-2">
+              <label style="font-weight:bold;padding-bottom:2px">Soyad:<span class="text-danger">*</span></label>
+              <input asp-for="SurName" type="text" required class="form-control" name="Surname" />
+            </div>
+            <div id="hideAuth">
+              <div class="form-group col-md-12 mt-2">
+                <label style="font-weight:bold;padding-bottom:2px">Yetki:<span class="text-danger">*</span></label>
+                <select asp-for="AuthorizationStatus" asp-items="@Html.GetEnumSelectList<RegistaMaster.Domain.Enums.AuthorizationStatus>()" class="form-control select2" name="AuthorizationStatus">
+                  <option selected="selected" disabled value="0">Lütfen Seçiniz</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-md-12 mt-2">
+              <label style="font-weight:bold;padding-bottom:2px">Email:<span class="text-danger">*</span></label>
+              <input asp-for="Email" type="email" required class="form-control" name="Email" />
+            </div>
+            <div class="form-group col-md-6 mt-2">
+              <label style="font-weight:bold;padding-bottom:2px">Kullanıcı Adı:<span class="text-danger">*</span></label>
+              <input asp-for="UserName" type="text" required class="form-control" name="Username" />
+            </div>
+            <div class="form-group col-md-6 mt-2">
+              <label style="font-weight:bold;padding-bottom:2px">Parola:<span class="text-danger">*</span></label>
+              <input asp-for="Password" type="password" required class="form-control" name="Password" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" onclick="SaveUser()" class="btn btn-primary">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Change Authorization Modal-->
+<div class="modal fade" id="changeAuthorization" tabindex="-1" aria-labelledby="changeAuthorizationLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changeAuthorizationLabel">Değiştirmek İstediğiniz Yetki Tipini Seçiniz</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <input type="hidden" id="chanceAuthID" />
+          <div class="col-md-12 mt-2">
+            <label style="font-weight:bold;padding-bottom:2px">Yetki:<span class="text-danger">*</span></label>
+            <select asp-for="AuthorizationStatus" asp-items="@Html.GetEnumSelectList<RegistaMaster.Domain.Enums.AuthorizationStatus>()" id="changeAuthStatus" class="form-control select2" name="AuthorizationStatus">
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" onclick="ChangeAuthorization()" class="btn btn-primary">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts
+{
+  <script src="~/js/Page/User/Index.js"></script>
+}
+
+

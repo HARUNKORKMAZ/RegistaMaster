@@ -60,7 +60,7 @@ namespace RegistaMaster.WebApp.Controllers
     {
       try
       {
-        await unitOfWork.Repository.Delete<Customer>(key);
+        await unitOfWork.Repository.Delete<Customer>(Key);
         await unitOfWork.SaveChanges();
         return "1";
 
