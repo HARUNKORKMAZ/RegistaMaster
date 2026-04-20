@@ -41,7 +41,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       var list= GetNonDeletedAndActive<User>(t=>true).Select(user => new SelectListItem
       {
         Value = user.Id.ToString(),
-        Text = user.FullName,
+        Text = user.Fullname,
       }).ToList();
       return list;  
     }

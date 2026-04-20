@@ -17,7 +17,7 @@ namespace RegistaMaster.WebApp.Controllers
   {
     private readonly IUnitOfWork unitOfWork;
     private readonly SessionModel session;
-    public UserController(IUnitOfWork _unitOfWork, SessionModel _session)
+    public UserController(IUnitOfWork _unitOfWork)
     {
       unitOfWork = _unitOfWork;
       session = unitOfWork.GetSession();

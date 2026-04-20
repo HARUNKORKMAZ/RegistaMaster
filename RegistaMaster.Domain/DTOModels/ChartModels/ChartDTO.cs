@@ -14,7 +14,7 @@ namespace RegistaMaster.Domain.DTOModels.ChartModels
     public int ActionContinued { get; set; }
     public int ActionCompleted { get; set; }
     public int ActionCancel { get; set; }
-    public UserChartDTO userChartDTO { get; set; }
+    public UserChartDTO UserChartDTO { get; set; }
 
   }
 }

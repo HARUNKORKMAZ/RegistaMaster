@@ -19,9 +19,9 @@ namespace RegistaMaster.Domain.Entities
         [MaxLength(150, ErrorMessage = "{0} {1} karakterden büyük olamaz")]
         public string Surname { get; set; }
         [DisplayName("Kullanıcı Adı")]
-        public string UserName { get; set; }
+        public string Username { get; set; }
         [NotMapped]
-        public string FullName => Name + "" + Surname;
+        public string Fullname => Name + "" + Surname;
         public string? Image { get; set; }
         
 
@@ -32,6 +32,6 @@ namespace RegistaMaster.Domain.Entities
         public string Password { get; set; }
         public AuthorizationStatus AuthorizationStatus { get; set; }
         public virtual Customer Customer{ get; set; }
-        public int CustomerId { get; set; }
+        public int CustomerID { get; set; }
     }
 }

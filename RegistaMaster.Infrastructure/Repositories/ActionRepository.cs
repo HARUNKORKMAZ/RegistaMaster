@@ -20,9 +20,9 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public ActionRepository(RegistaMasterContext _context, SessionModel _session, IUnitOfWork _unitOfWork) : base(_context, _session)
     {
-      context = context;
-      session = session;
-      unitOfWork = unitOfWork;
+      context = _context;
+      session = _session;
+      unitOfWork = _unitOfWork;
     }
 
     public async Task<string> ActionDelete(int Id)
@@ -200,7 +200,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         return await GetQueryable<Action>(t=>t.Id==Id && t.ObjectStatus == ObjectStatus.NonDeleted).Select(s=>new ActionPageDTO
         {
           Id = s.Id,
-          Responsible = s.Repsonsible.FullName,
+          Responsible = s.Repsonsible.Fullname,
           OpeningDate = s.OpeningDate,
           EndDate = s.EndDate,
           Description = s.Description,

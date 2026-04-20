@@ -8,7 +8,7 @@ function FormSave() {
 
   data.append('Name', $('#Name').val());
   data.append('Surname', $('#Surname').val());
-  data.append('UserName', $('#UserName').val());
+  data.append('Username', $('#Username').val());
   data.append('Password', $('#Password').val());
   data.append('Email', $('#Email').val());
   data.append('Id', $('#userID').val());
@@ -58,7 +58,7 @@ function FormSave() {
 function EditUserDetail() {
   $('#Name').prop('readonly', false);
   $('#Surname').prop('readonly', false);
-  $('#UserName').prop('readonly', false);
+  $('#Username').prop('readonly', false);
   $('#Password').prop('readonly', false);
   $('#Email').prop('readonly', false);
   $('#btnSave').prop('disabled', false);

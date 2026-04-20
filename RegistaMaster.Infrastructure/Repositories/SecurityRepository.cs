@@ -15,7 +15,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     }
     public async Task<User> Login(string username , string password)
     {
-      return await context.Users.FirstOrDefaultAsync(t=>(t.UserName==username || t.Email == username) && t.Password==password && t.ObjectStatus == ObjectStatus.NonDeleted && t.Status ==Status.Active);
+      return await context.Users.FirstOrDefaultAsync(t=>(t.Username==username || t.Email == username) && t.Password==password && t.ObjectStatus == ObjectStatus.NonDeleted && t.Status ==Status.Active);
     }
   }
 }

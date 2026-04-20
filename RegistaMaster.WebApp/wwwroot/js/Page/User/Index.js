@@ -120,7 +120,7 @@ function GetList() {
         alignment: 'center',
       },
       {
-        dataField: "userName",
+        dataField: "username",
         caption: "Kullanıcı Adı",
         alignment: 'center',
       },
@@ -147,7 +147,7 @@ function GetList() {
             },
           }),
           valueExpr: "Id",
-          displayExpr: "Text"
+          displayExpr: "Value"
         }
       },
       {
@@ -355,7 +355,7 @@ function OpenEditModal(data) {
   $("#ID").val(data.id);
   $("#Name").val(data.name);
   $("#Surname").val(data.surname);
-  $("#Username").val(data.userName);
+  $("#Username").val(data.username);
   $("#Email").val(data.email);
   $("#Password").val(data.password);
 

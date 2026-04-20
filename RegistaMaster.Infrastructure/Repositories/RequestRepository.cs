@@ -477,7 +477,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         .Select(user => new SelectListItem
         {
           Value = user.Id.ToString(),
-          Text = user.FullName,
+          Text = user.Fullname,
         }).ToList();
       return list;
     }

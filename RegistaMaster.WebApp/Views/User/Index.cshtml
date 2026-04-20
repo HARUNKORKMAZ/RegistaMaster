@@ -40,7 +40,7 @@
       <div class="modal-body" id="clear">
         <form>
           <div class="row">
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ID" />
             <div class="form-group col-md-12">
               <label style="font-weight:bold;padding-bottom:2px">Ad:<span class="text-danger">*</span></label>
               <input asp-for="Name" type="text" required class="form-control" name="Name" />
@@ -48,7 +48,7 @@
             </div>
             <div class="form-group col-md-12 mt-2">
               <label style="font-weight:bold;padding-bottom:2px">Soyad:<span class="text-danger">*</span></label>
-              <input asp-for="SurName" type="text" required class="form-control" name="Surname" />
+              <input asp-for="Surname" type="text" required class="form-control" name="Surname" />
             </div>
             <div id="hideAuth">
               <div class="form-group col-md-12 mt-2">
@@ -64,7 +64,9 @@
             </div>
             <div class="form-group col-md-6 mt-2">
               <label style="font-weight:bold;padding-bottom:2px">Kullanıcı Adı:<span class="text-danger">*</span></label>
-              <input asp-for="UserName" type="text" required class="form-control" name="Username" />
+            <input asp-for="Username" type="text" required class="form-control" name="Username" />
+              
+
             </div>
             <div class="form-group col-md-6 mt-2">
               <label style="font-weight:bold;padding-bottom:2px">Parola:<span class="text-danger">*</span></label>

@@ -73,8 +73,10 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       var fieldInfo = value.GetType().GetField(value.ToString());
       var descriptionAttribute = fieldInfo.GetCustomAttributes(typeof(DisplayAttribute), false) as DisplayAttribute[];
+
       if (descriptionAttribute[0].ResourceType != null)
         return LookUpResource(descriptionAttribute[0].ResourceType, descriptionAttribute[0].Name);
+
       if (descriptionAttribute[0].ResourceType == null)
         return string.Empty;
       return (descriptionAttribute.Length>0 ) ? descriptionAttribute[0].Name : value.ToString();
@@ -122,7 +124,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       foreach(PropertyInfo staticPropert in resourceManagerProvider.GetProperties(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public))
       {
-                if(staticPropert.PropertyType == typeof(System.Resources.ResourceManager))
+        if(staticPropert.PropertyType == typeof(System.Resources.ResourceManager))
         {
           System.Resources.ResourceManager resourceManager= (System.Resources.ResourceManager)staticPropert.GetValue(null, null);
           return resourceManager.GetString(resourceKey);

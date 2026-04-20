@@ -8,7 +8,7 @@ builder.Services.AddSession(options =>
 });
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDatabase(connectionString);
 builder.Services.MyRepository();

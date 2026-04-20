@@ -14,17 +14,17 @@ namespace RegistaMaster.Infrastructure.Repositories
     private readonly RegistaMasterContext context;
     private readonly IUnitOfWork unitOfWork;
     private readonly SessionModel session;
-    public UserRepository(RegistaMasterContext context, IUnitOfWork unitOfWork, SessionModel session) : base(context, session)
+    public UserRepository(RegistaMasterContext _context, IUnitOfWork _unitOfWork, SessionModel _session) : base(_context, _session)
     {
-      context = context;
-      unitOfWork = unitOfWork;
-      session = session;
+      context = _context;
+      unitOfWork = _unitOfWork;
+      session = _session;
     }
     public async Task<string> AddUser(User model)
     {
       try
       {
-        model.CustomerId = session.CustomerId;
+        model.CustomerID = session.CustomerId;
         await unitOfWork.Repository.Add(model);
         await unitOfWork.SaveChanges();
         return "";
@@ -40,7 +40,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var user = await GetById<User>(model.Id);
+        var user = await GetById<User>(model.ID);
         user.AuthorizationStatus = model.AuthorizationStatus;
         await unitOfWork.SaveChanges();
         return "1";
@@ -95,13 +95,13 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         return GetNonDeletedAndActive<User>(t => t.ObjectStatus == ObjectStatus.NonDeleted).Select(s => new UserDTO()
         {
-          Id = s.Id,
+          ID = s.Id,
           Name = s.Name,
-          SurName = s.Surname,
+          Surname = s.Surname,
           Email = s.Email,
-          UserName = s.UserName,
+          Username = s.Username,
           Password = s.Password,
-          AuthorizatinStatus = s.AuthorizationStatus,
+          AuthorizationStatus = s.AuthorizationStatus,
         });
       }
       catch (Exception e)
@@ -140,10 +140,10 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var user = await GetById<User>(model.Id);
+        var user = await GetById<User>(model.ID);
         user.Name = model.Name;
-        user.Surname = model.SurName;
-        user.UserName = model.UserName;
+        user.Surname = model.Surname;
+        user.Username = model.Username;
         user.Email = model.Email;
         user.Password = model.Password;
         Update(user);
@@ -162,10 +162,10 @@ namespace RegistaMaster.Infrastructure.Repositories
       var user = await GetById<User>(id);
       return new UserDetailDTO()
       {
-        Id = user.Id,
+        ID = user.Id,
         Name = user.Name,
-        SurName = user.Surname,
-        UserName = user.UserName,
+        Surname = user.Surname,
+        Username = user.Username,
         Image = user.Image,
         Email = user.Email,
         Password = user.Password,
@@ -180,12 +180,12 @@ namespace RegistaMaster.Infrastructure.Repositories
         var model = await unitOfWork.Repository.GetById<User>(unitOfWork.GetSession().Id);
         var userDetail = new UserDTO()
         {
-          UserName = model.UserName,
+          Username = model.Username,
           Name = model.Name,
-          SurName = model.Surname,
+          Surname = model.Surname,
           Email = model.Email,
           Password = model.Password,
-          AuthorizatinStatus = model.AuthorizationStatus,
+          AuthorizationStatus = model.AuthorizationStatus,
         };
         return userDetail;
       }

@@ -7,12 +7,14 @@ namespace RegistaMaster.WebApp.Controllers
 {
   public class SecurityController : Controller
   {
+    private readonly IUnitOfWork unitOfWork;
     private readonly ISecurityRepository securityRepository;
     private readonly ISessionService sessionService;
-    public SecurityController(ISecurityRepository _securityRepository, ISessionService _sessionService)
+    public SecurityController(ISecurityRepository _securityRepository, ISessionService _sessionService, IUnitOfWork _unitOfWork)
     {
       sessionService = _sessionService;
       securityRepository = _securityRepository;
+      unitOfWork = _unitOfWork;
     }
     public IActionResult Index()
     {
@@ -47,7 +49,7 @@ namespace RegistaMaster.WebApp.Controllers
     public IActionResult Logout()
     {
       sessionService.CleanSession();
-      return RedirectToAction("/Login");
+      return RedirectToAction("Login");
     }
   }
 }

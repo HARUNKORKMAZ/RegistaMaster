@@ -60,7 +60,7 @@ namespace RegistaMaster.Infrastructure.Repositories
           Continued=actions.Where(t=>t.ActionStatus == ActionStatus.Continued && t.ResponsibleId==t.Id).Count(),
           Completed=actions.Where(t=>t.ActionStatus == ActionStatus.Completed && t.ResponsibleId==t.Id).Count(),
           Cancel=actions.Where(t=>t.ActionStatus == ActionStatus.Canceled && t.ResponsibleId==t.Id).Count(),
-          UserFullName=t.FullName
+          UserFullName=t.Fullname
         }).ToList();
         return users;
       }
@@ -147,7 +147,7 @@ namespace RegistaMaster.Infrastructure.Repositories
           Completed = userActions.Where(t => t.ActionStatus == ActionStatus.Completed).Count(),
           Cancel = userActions.Where(t => t.ActionStatus == ActionStatus.Canceled).Count(),
         };
-        chart.userChartDTO = user;
+        chart.UserChartDTO = user;
         return chart;
       }
       catch (Exception)

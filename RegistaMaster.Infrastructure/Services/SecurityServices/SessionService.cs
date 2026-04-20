@@ -132,7 +132,7 @@ namespace RegistaMaster.Infrastructure.Services.SecurityServices
       {
         var sesssionmodel= new SessionModel()
         {
-          CustomerId=user.CustomerId,
+          CustomerId=user.CustomerID,
           Id=user.Id,
           Name=user.Name,
           Surname=user.Surname,
