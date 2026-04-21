@@ -276,7 +276,7 @@ function GetVersion() {
             //   validationRules: [{ type: "required", message: "Bu alan zorunludur." }]
             //},
             {
-              dataField: "projectID",
+              dataField: "projectId",
               caption: "Proje",
               colSpan: 2,
               validationRules: [{ type: "required", message: "Bu alan zorunludur." }],
@@ -362,7 +362,7 @@ function GetVersion() {
         format: 'dd/MM/yyyy',
       },
       {
-        dataField: "projectID",
+        dataField: "projectId",
         caption: "Proje",
         validationRules: [{ type: "required", message: "Bu alan zorunludur." }],
         lookup: {

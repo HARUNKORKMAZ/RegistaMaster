@@ -38,7 +38,7 @@ namespace RegistaMaster.Infrastructure.Repositories
           Name = model.Name,
           Date = DateTime.Now,
           Description = model.Description,
-          DatebaseChange = model.DatabaseChange,
+          DatabaseChange = model.DatabaseChange,
           ProjectId = model.ProjectId
         });
         await unitOfWork.SaveChanges();
@@ -86,7 +86,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         Date = s.Date,
         ProjectId = s.ProjectId,
         Description = s.Description,
-        DatabaseChange = s.DatebaseChange,
+        DatabaseChange = s.DatabaseChange,
       });
       return model;
     }
@@ -102,7 +102,7 @@ namespace RegistaMaster.Infrastructure.Repositories
           Date = p.Date,
           ProjectId = p.ProjectId,
           Description = p.Description,
-          DatabaseChange = p.DatebaseChange,
+          DatabaseChange = p.DatabaseChange,
         });
         return JsonConvert.SerializeObject(version);
       }
@@ -155,7 +155,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         version.Description = model.Description;
         version.ProjectId = model.ProjectId;
         version.Date = model.Date;
-        version.DatebaseChange = model.DatabaseChange;
+        version.DatabaseChange = model.DatabaseChange;
         Update(version);
         await unitOfWork.SaveChanges();
         return "1";
