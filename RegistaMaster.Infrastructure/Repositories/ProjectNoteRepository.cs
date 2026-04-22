@@ -25,7 +25,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        if (unitOfWork.Repository.GetNonDeletedAndActive<Request>(t => t.ProjectId == id && t.RequestStatus != RequestStatus.Closed).Count() != 0)
+        if (unitOfWork.Repository.GetNonDeletedAndActive<Request>(t => t.ProjectID == id && t.RequestStatus != RequestStatus.Closed).Count() != 0)
           return "-1";
         return "1";
       }
@@ -40,7 +40,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       var list= GetNonDeletedAndActive<User>(t=>true).Select(user => new SelectListItem
       {
-        Value = user.Id.ToString(),
+        Value = user.ID.ToString(),
         Text = user.Fullname,
       }).ToList();
       return list;  
@@ -48,14 +48,14 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public void Delete(int id)
     {
-      var project = GetNonDeletedAndActive<ProjectNote>(t => t.Id == id);
+      var project = GetNonDeletedAndActive<ProjectNote>(t => t.ID == id);
       DeleteRange(project.ToList());
       Delete<ProjectNote>(id);
     }
 
     public async Task<string> DeleteNoteWithProjectId(int id)
     {
-      var project = GetNonDeletedAndActive<ProjectNote>(t => t.ProjectId == id);
+      var project = GetNonDeletedAndActive<ProjectNote>(t => t.ProjectID == id);
       await DeleteRange(project.ToList());
       return "1";
     }
@@ -66,7 +66,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         return GetNonDeletedAndActive<ProjectNote>(t => t.ObjectStatus == ObjectStatus.NonDeleted).Select(s => new ProjectNoteDTO()
         {
-          Id = s.Id,
+          ID = s.ID,
           Date = s.Date,
           Description = s.Description,
         });
@@ -88,7 +88,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         {
           ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
           {
-            Id = item.Id,
+            ID = item.ID,
             Name = item.ProjectName,
           };ResponsibleHeler.Add(helper);
         }
@@ -105,11 +105,11 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var notes = GetNonDeletedAndActive<ProjectNote>(t => t.ProjectId == id).Select(p => new ProjectNoteDTO
+        var notes = GetNonDeletedAndActive<ProjectNote>(t => t.ProjectID == id).Select(p => new ProjectNoteDTO
         {
           Date = p.Date,
           Description = p.Description,
-          Id = p.Id,
+          ID = p.ID,
           NoteType = p.NoteType,
           CreatedBy = p.CreatedBy,
         });
@@ -140,7 +140,7 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public async Task<string> UpdateProjectNote(ProjectNoteDTO model)
     {
-      var note = await GetById<ProjectNote>(model.Id);
+      var note = await GetById<ProjectNote>(model.ID);
       note.NoteType = model.NoteType;
       note.Description = model.Description;
       Update(note);

@@ -231,7 +231,7 @@ namespace RegistaMaster.WebApp.Controllers
 
     public async Task<string> CheckActionsForDeleteRequest(int ID)
     {
-      if (unitOfWork.Repository.GetQueryable<Action>(t => t.RequestId == ID && t.ObjectStatus == ObjectStatus.NonDeleted).Any())
+      if (unitOfWork.Repository.GetQueryable<Action>(t => t.RequestID == ID && t.ObjectStatus == ObjectStatus.NonDeleted).Any())
         return "2";
       return "1";
     }

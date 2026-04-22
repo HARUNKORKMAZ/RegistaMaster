@@ -31,7 +31,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         await unitOfWork.SaveChanges();
         var version = new VersionDTO()
         {
-          ProjectId = model.Id,
+          ProjectID = model.ID,
           DatabaseChange = true,
           Name = "V1.0"
         };
@@ -47,7 +47,7 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public void Delete(int ID)
     {
-      var project = GetNonDeletedAndActive<Project>(t => t.Id == ID);
+      var project = GetNonDeletedAndActive<Project>(t => t.ID == ID);
       DeleteRange(project.ToList());
       Delete<Project>(ID);
     }
@@ -76,7 +76,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         return GetNonDeletedAndActive<Project>(t => t.ObjectStatus == ObjectStatus.NonDeleted).Select(s => new ProjectDTO()
         {
-          Id = s.Id,
+          ID = s.ID,
           ProjectName = s.ProjectName,
           ProjectDescription = s.ProjectDescription,
         });
@@ -95,7 +95,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         return GetNonDeletedAndActive<Project>(t => t.ProjectGuid
         .ToString() == key).Select(s => new ProjectSessionModel()
         {
-          Id= s.Id,
+          ID= s.ID,
           Name= s.ProjectName,
         }).FirstOrDefault();
       }
@@ -112,7 +112,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         return GetNonDeletedAndActive<Project>(t=>true)
           .Select(s => new SelectListItem{
-            Value=s.Id.ToString(),
+            Value=s.ID.ToString(),
             Text=s.ProjectName,
           }).ToList();
       }
@@ -125,7 +125,7 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public async Task<string> UpdateProject(ProjectDTO model)
     {
-      var project = await GetById<Project>(model.Id);
+      var project = await GetById<Project>(model.ID);
       project.ProjectDescription = model.ProjectDescription;
       project.ProjectName = model.ProjectName;
       Update(project);

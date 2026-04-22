@@ -8,7 +8,7 @@ namespace RegistaMaster.Domain.Entities
         [DisplayName("Aksiyon Konusu")]
         public string Subject { get; set; }
         [DisplayName("Sorumlu")]
-        public int ResponsibleId { get; set; }
+        public int ResponsibleID { get; set; }
         public User Repsonsible { get; set; }
         [DisplayName("Açıklama Tarihi")]
         public DateTime OpeningDate { get; set; }
@@ -23,7 +23,7 @@ namespace RegistaMaster.Domain.Entities
         public ActionStatus ActionStatus { get; set; }
         public RequestStatus RequestStatus { get; set; }
         public ActionPriorityStatus ActionPriorityStatus { get; set; }
-        public int RequestId { get; set; }
+        public int RequestID { get; set; }
         public Request Request { get; set; }
         public ICollection<ActionNote>? ActionNotes { get; set; }
     }

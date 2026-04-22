@@ -2,8 +2,8 @@
 {
   public class ActionNoteDTO
   {
-    public int Id { get; set; }
-    public int ActionId { get; set; }
+    public int ID { get; set; }
+    public int ActionID { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
   }

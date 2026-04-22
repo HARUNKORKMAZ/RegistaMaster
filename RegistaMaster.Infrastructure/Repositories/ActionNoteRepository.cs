@@ -51,7 +51,7 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public string Delete(int Id)
     {
-      var actionNote = GetNonDeletedAndActive<ActionNote>(t=>t.Id==Id);
+      var actionNote = GetNonDeletedAndActive<ActionNote>(t=>t.ID==Id);
       DeleteRange(actionNote.ToList());
       return "1";
     }
@@ -60,11 +60,11 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        return GetNonDeletedAndActive<ActionNote>(t => t.ActionId == Id).Select(s => new ActionNoteDTO
+        return GetNonDeletedAndActive<ActionNote>(t => t.ActionID == Id).Select(s => new ActionNoteDTO
         {
-          Id = s.Id,
+          ID = s.ID,
           Title = s.Title,
-          ActionId = s.ActionId,
+          ActionID = s.ActionID,
           Description = s.Description
         });
       }

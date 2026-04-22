@@ -8,10 +8,10 @@ namespace RegistaMaster.Domain.DTOModels.Entities.ActionModels
 {
   public class ActionDTO
   {
-    public int Id { get; set; }
+    public int ID { get; set; }
     public string Subject { get; set; }
-    public int ResponsibleId { get; set; }
-    public int RequestId { get; set; }
+    public int ResponsibleID { get; set; }
+    public int RequestID { get; set; }
     public DateTime OpeningDate { get; set; }
     public DateTime EndDate { get; set; }
     public DateTime StartDate { get; set; }

@@ -30,10 +30,10 @@ namespace RegistaMaster.Infrastructure.Services.SecurityServices
     public SessionModel GetInjection()
     {
       var user = new SessionModel();
-      user.Id = -1;
+      user.ID = -1;
       if (httpContextAccessor.HttpContext == null)
       {
-        user.Id = -1;
+        user.ID = -1;
         return user;
       }
 
@@ -42,9 +42,9 @@ namespace RegistaMaster.Infrastructure.Services.SecurityServices
       {
         var val2 = httpContextAccessor.HttpContext.User.FindFirst("CustomerId");
         if (val2 != null)
-          user.CustomerId = Convert.ToInt32(val2.Value);
+          user.CustomerID = Convert.ToInt32(val2.Value);
         if (val != null)
-          user.CustomerId = Convert.ToInt32(val.Value);
+          user.CustomerID = Convert.ToInt32(val.Value);
       }
       else
       {
@@ -63,7 +63,7 @@ namespace RegistaMaster.Infrastructure.Services.SecurityServices
         var key = httpContextAccessor.HttpContext.Request.Headers["Authorization"].ToString();
         return context.Projects.Where(t => t.ProjectGuid.ToString() == key && t.ObjectStatus == ObjectStatus.NonDeleted && t.Status == Status.Active).Select(s => new ProjectSessionModel()
         {
-          Id = s.Id,
+          ID = s.ID,
           Name = s.ProjectName
         }).FirstOrDefault();
 
@@ -132,8 +132,8 @@ namespace RegistaMaster.Infrastructure.Services.SecurityServices
       {
         var sesssionmodel= new SessionModel()
         {
-          CustomerId=user.CustomerID,
-          Id=user.Id,
+          CustomerID=user.CustomerID,
+          ID=user.ID,
           Name=user.Name,
           Surname=user.Surname,
           Authorization=user.AuthorizationStatus,

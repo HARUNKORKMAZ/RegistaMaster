@@ -9,10 +9,10 @@ namespace RegistaMaster.Domain.Entities
         [DisplayName("Giriş Yapılan Tarih")]
         public DateTime LoginDate { get; set; }
         [DisplayName("Müşteri Id")]
-        public int? ClientId { get; set; }
+        public int? ClientID { get; set; }
         [DisplayName("Kullanıcı Id")]
-        public int? MemberId { get; set; }
-        public int ProjectId { get; set; }
+        public int? MemberID { get; set; }
+        public int ProjectID { get; set; }
         public Project Projects { get; set; }
     }
 }

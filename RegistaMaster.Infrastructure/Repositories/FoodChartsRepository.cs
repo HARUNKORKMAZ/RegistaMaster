@@ -210,7 +210,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         return GetQueryable<FoodChart>(t => t.ObjectStatus == ObjectStatus.NonDeleted).Select(s => new FoodChartsDTO
         {
-          Id = s.Id,
+          ID = s.ID,
           Date = s.Date,
           PersonNumber = s.PersonNumber,
         });

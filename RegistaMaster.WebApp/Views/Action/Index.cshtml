@@ -6,7 +6,7 @@
 @{
   var user = session.GetUser();
 }
-<input type="hidden" id="userID" value="@user.Id" />
+<input type="hidden" id="userID" value="@user.ID" />
 <input type="hidden" id="auth" value="@Convert.ToInt32(user.Authorization)" />
 
 

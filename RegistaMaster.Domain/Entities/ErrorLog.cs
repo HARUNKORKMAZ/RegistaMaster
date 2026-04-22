@@ -11,10 +11,10 @@ namespace RegistaMaster.Domain.Entities
         [DisplayName("Hata Mesajı")]
         public string ErrorDesc { get; set; }
         [DisplayName("Müşteri")]
-        public int ClientId { get; set; }
+        public int ClientID { get; set; }
         [DisplayName("Kullanıcı")]
-        public int MemberId { get; set; }
-        public int ProjectId { get; set; }
+        public int MemberID { get; set; }
+        public int ProjectID { get; set; }
         public Project Project { get; set; }
     }
 }

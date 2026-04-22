@@ -9,7 +9,7 @@ namespace RegistaMaster.Domain.DTOModels.Entities.ErrorLogModels
     public string NameSurname { get; set; }
     public DateTime ErrorDate{ get; set; }
     public string ErrorDesc { get; set; }
-    public int  ClientId { get; set; }
-    public int  MemberId { get; set; }
+    public int  ClientID { get; set; }
+    public int  MemberID { get; set; }
   }
 }

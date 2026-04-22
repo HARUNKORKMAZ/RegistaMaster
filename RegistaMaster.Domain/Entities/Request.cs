@@ -11,10 +11,10 @@ namespace RegistaMaster.Domain.Entities
         public string? Description { get; set; }
         [DisplayName("Kategori")]
         public string? Category { get; set; }
-        public int? CategoryId { get; set; }
+        public int? CategoryID { get; set; }
         [DisplayName("Bildirim Türü")]
         public string? NotificationType { get; set; }
-        public int? NotificationTypeId { get; set; }
+        public int? NotificationTypeID { get; set; }
         [DisplayName("Sayfa Linki")]
         public string? PageUrl { get; set; }
         [DisplayName("Görüntü")]
@@ -26,12 +26,12 @@ namespace RegistaMaster.Domain.Entities
         [DisplayName("Durum")]
         public RequestStatus RequestStatus { get; set; }
         [DisplayName("Bildirim ID")]
-        public int NotificationId { get; set; }
+        public int NotificationID { get; set; }
         [DisplayName("Versiyon")]
-        public int? VersionId { get; set; }
+        public int? VersionID { get; set; }
         public Version Version { get; set; }
-        public int? ModuleId { get; set; }
-        public int ProjectId { get; set; }
+        public int? ModuleID { get; set; }
+        public int ProjectID { get; set; }
         public Project Project { get; set; }
         public ICollection<Action> Actions { get; set; }
         public ICollection<RequestFile> Files { get; set; }

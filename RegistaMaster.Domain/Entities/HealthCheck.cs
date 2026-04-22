@@ -10,7 +10,7 @@ namespace RegistaMaster.Domain.Entities
         public string RequestDesc { get; set; }
         [DisplayName("Tarih")]
         public DateTime RequestDate { get; set; }
-        public int ProjectId { get; set; }
+        public int ProjectID { get; set; }
         public Project Project { get; set; }
 
 

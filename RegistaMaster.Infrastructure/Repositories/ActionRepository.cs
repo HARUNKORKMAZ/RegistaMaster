@@ -29,7 +29,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var actionNotes = GetNonDeletedAndActive<ActionNote>(t => t.ActionId == t.Id).ToList();
+        var actionNotes = GetNonDeletedAndActive<ActionNote>(t => t.ActionID == t.ID).ToList();
         await unitOfWork.Repository.DeleteRange(actionNotes);
         await unitOfWork.Repository.Delete<Action>(Id);
         await unitOfWork.SaveChanges();
@@ -46,7 +46,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var actionNote = await GetById<ActionNote>(model.Id);
+        var actionNote = await GetById<ActionNote>(model.ID);
         actionNote.Description = model.Description;
         actionNote.Title = model.Title;
         unitOfWork.Repository.Update(actionNote);
@@ -66,7 +66,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         var list = GetEnumSelect<ActionPriorityStatus>().Select(aps => new SelectListItem
         {
-          Value = aps.Id.ToString(),
+          Value = aps.ID.ToString(),
           Text = aps.Text,
         });
         return list.ToList();
@@ -82,11 +82,11 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var action = await GetById<Action>(model.Id);
+        var action = await GetById<Action>(model.ID);
         action.Subject = model.Subject;
         action.Description = model.Description;
         action.ActionPriorityStatus = model.ActionPriorityStatus;
-        action.ResponsibleId = model.ResponsibleId;
+        action.ResponsibleID = model.ResponsibleID;
         action.OpeningDate = model.OpeningDate;
         action.EndDate = model.EndDate;
         unitOfWork.Repository.Update(action);
@@ -104,10 +104,10 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var request = await GetById<Request>(model.RequestId);
+        var request = await GetById<Request>(model.RequestID);
         if (request.RequestStatus == RequestStatus.Waiting)
         {
-          var cancelledActions = GetQueryable<Action>(t => t.RequestId == model.RequestId && t.Status == Status.Active && t.ObjectStatus == ObjectStatus.NonDeleted && t.ActionStatus == ActionStatus.Canceled).ToList();
+          var cancelledActions = GetQueryable<Action>(t => t.RequestID == model.RequestID && t.Status == Status.Active && t.ObjectStatus == ObjectStatus.NonDeleted && t.ActionStatus == ActionStatus.Canceled).ToList();
           foreach (var action in cancelledActions)
           {
             action.Status = Status.Active;
@@ -133,16 +133,16 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var action = await GetById<Action>(model.Id);
+        var action = await GetById<Action>(model.ID);
         action.ActionStatus = model.ActionStatus;
         action.StartDate = model.StartDate;
         action.ComplateDate = model.CompleteDate;
         unitOfWork.Repository.Update(action);
         await unitOfWork.SaveChanges();
 
-        var request = await GetById<Request>(action.RequestId);
+        var request = await GetById<Request>(action.RequestID);
 
-        var requestActions = GetQueryable<Action>(t => t.RequestId == action.RequestId && t.Status == Status.Active && t.ActionStatus != ActionStatus.Completed);
+        var requestActions = GetQueryable<Action>(t => t.RequestID == action.RequestID && t.Status == Status.Active && t.ActionStatus != ActionStatus.Completed);
 
         var cancelledActions = requestActions.Where(x => x.ActionStatus == ActionStatus.Canceled).Count();
 
@@ -185,11 +185,11 @@ namespace RegistaMaster.Infrastructure.Repositories
       }
     }
 
-    public string Delete(int Id)
+    public string Delete(int ID)
     {
-      var action = GetNonDeletedAndActive<Action>(t => t.Id == Id);
+      var action = GetNonDeletedAndActive<Action>(t => t.ID == ID);
       DeleteRange(action.ToList());
-      Delete<Action>(Id);
+      Delete<Action>(ID);
       return "1";
     }
 
@@ -197,15 +197,15 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        return await GetQueryable<Action>(t=>t.Id==Id && t.ObjectStatus == ObjectStatus.NonDeleted).Select(s=>new ActionPageDTO
+        return await GetQueryable<Action>(t=>t.ID==Id && t.ObjectStatus == ObjectStatus.NonDeleted).Select(s=>new ActionPageDTO
         {
-          Id = s.Id,
+          ID = s.ID,
           Responsible = s.Repsonsible.Fullname,
           OpeningDate = s.OpeningDate,
           EndDate = s.EndDate,
           Description = s.Description,
           ActionStatus = s.ActionStatus,
-          RequestId = s.RequestId,
+          RequestID = s.RequestID,
         }).FirstOrDefaultAsync();
       }
       catch (Exception e)
@@ -219,7 +219,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var model = GetQueryable<Action>(t => t.RequestId == Id && t.ObjectStatus == ObjectStatus.NonDeleted).OrderByDescending(t => t.Id);
+        var model = GetQueryable<Action>(t => t.RequestID == Id && t.ObjectStatus == ObjectStatus.NonDeleted).OrderByDescending(t => t.ID);
 
         List<ActionDTO> actionList = new List<ActionDTO>();
 
@@ -228,16 +228,16 @@ namespace RegistaMaster.Infrastructure.Repositories
         {
           ActionDTO actions = new ActionDTO()
           {
-            Id = item.Id,
+            ID = item.ID,
             Description = item.Description,
             EndDate = item.EndDate,
             OpeningDate = item.OpeningDate,
-            ResponsibleId = item.ResponsibleId,
+            ResponsibleID = item.ResponsibleID,
             ActionStatus = item.ActionStatus,
             ActionPriorityStatus = item.ActionPriorityStatus,
             Subject = item.Subject,
             LastModifiedBy = item.LastModifiedBy,
-            RequestId = Id,
+            RequestID = Id,
             CreateOn = item.CreatedOn,
             CreatedBy = item.CreatedBy,
             StartDate = item.StartDate,
@@ -260,14 +260,14 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         return GetQueryable<Action>(t => t.ObjectStatus == ObjectStatus.NonDeleted).Select(s => new ActionDTO()
         {
-          Id = s.Id,
+          ID = s.ID,
           Description = s.Description,
           EndDate = s.EndDate,
           OpeningDate = s.OpeningDate,
-          ResponsibleId = s.ResponsibleId,
+          ResponsibleID = s.ResponsibleID,
           ActionStatus = s.ActionStatus,
           Subject = s.Subject,
-          RequestId= s.RequestId,
+          RequestID= s.RequestID,
           ActionPriorityStatus = s.ActionPriorityStatus,
           CreatedBy = s.CreatedBy,
           StartDate = s.StartDate,
@@ -291,7 +291,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         {
           ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
           {
-            Id = item.Id,
+            ID = item.ID,
             Name = item.Subject
           };
           RequestHelper.Add(helper);
@@ -311,7 +311,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         return GetNonDeletedAndActive<User>(t => true).Select(s => new SelectListItem
         {
-          Value = s.Id.ToString(),
+          Value = s.ID.ToString(),
           Text = s.Name + " " + s.Surname
         }).ToList();
       }

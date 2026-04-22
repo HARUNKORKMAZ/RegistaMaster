@@ -56,10 +56,10 @@ namespace RegistaMaster.Infrastructure.Repositories
         var actions = GetQueryable<Action>(t => t.ObjectStatus == ObjectStatus.NonDeleted);
         var users = GetQueryable<User>(t => t.AuthorizationStatus != AuthorizationStatus.Admin).Select(t => new UserChartDTO
         {
-          NotStarted=actions.Where(t=>t.ActionStatus == ActionStatus.NotStarted && t.ResponsibleId==t.Id).Count(),
-          Continued=actions.Where(t=>t.ActionStatus == ActionStatus.Continued && t.ResponsibleId==t.Id).Count(),
-          Completed=actions.Where(t=>t.ActionStatus == ActionStatus.Completed && t.ResponsibleId==t.Id).Count(),
-          Cancel=actions.Where(t=>t.ActionStatus == ActionStatus.Canceled && t.ResponsibleId==t.Id).Count(),
+          NotStarted=actions.Where(t=>t.ActionStatus == ActionStatus.NotStarted && t.ResponsibleID==t.ID).Count(),
+          Continued=actions.Where(t=>t.ActionStatus == ActionStatus.Continued && t.ResponsibleID==t.ID).Count(),
+          Completed=actions.Where(t=>t.ActionStatus == ActionStatus.Completed && t.ResponsibleID==t.ID).Count(),
+          Cancel=actions.Where(t=>t.ActionStatus == ActionStatus.Canceled && t.ResponsibleID==t.ID).Count(),
           UserFullName=t.Fullname
         }).ToList();
         return users;
@@ -75,7 +75,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var userAction = GetQueryable<Action>(t => t.ObjectStatus == ObjectStatus.NonDeleted && t.ResponsibleId == Id);
+        var userAction = GetQueryable<Action>(t => t.ObjectStatus == ObjectStatus.NonDeleted && t.ResponsibleID == Id);
         var user = new UserChartDTO()
         {
           NotStarted = userAction.Where(t => t.ActionStatus == ActionStatus.NotStarted).Count(),
@@ -96,22 +96,22 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var model = GetQueryable<Action>(t=>(t.ResponsibleId==session.Id || t.CreatedBy==session.Id) && t.ObjectStatus==ObjectStatus.NonDeleted).Select(s=> new ActionDTO()
+        var model = GetQueryable<Action>(t=>(t.ResponsibleID==session.ID || t.CreatedBy==session.ID) && t.ObjectStatus==ObjectStatus.NonDeleted).Select(s=> new ActionDTO()
         {
-          Id=s.Id,
+          ID=s.ID,
           Description=s.Description,
           EndDate=s.EndDate,
           OpeningDate=s.OpeningDate,
-          ResponsibleId=s.ResponsibleId,
+          ResponsibleID=s.ResponsibleID,
           ActionStatus=s.ActionStatus,
           Subject=s.Subject,
-          RequestId=s.RequestId,
+          RequestID=s.RequestID,
           ActionPriorityStatus=s.ActionPriorityStatus,
           LastModifiedBy=s.LastModifiedBy,
           CreatedBy=s.CreatedBy,
           StartDate=s.StartDate,
           CompleteDate=s.ComplateDate
-        }).OrderByDescending(s=>s.Id).ToList();
+        }).OrderByDescending(s=>s.ID).ToList();
         return model;
       }
       catch (Exception e)
@@ -139,7 +139,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         chart.ActionCancel = action.Where(t => t.ActionStatus == ActionStatus.Canceled).Count();
 
 
-        var userActions = GetQueryable<Action>(t => t.ObjectStatus == ObjectStatus.NonDeleted && t.ResponsibleId == Id);
+        var userActions = GetQueryable<Action>(t => t.ObjectStatus == ObjectStatus.NonDeleted && t.ResponsibleID == Id);
         var user = new UserChartDTO()
         {
           NotStarted = userActions.Where(t => t.ActionStatus == ActionStatus.NotStarted).Count(),

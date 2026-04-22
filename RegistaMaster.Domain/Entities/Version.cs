@@ -6,7 +6,7 @@
         public string? Description { get; set; }
         public DateTime Date { get; set; }
         public bool DatabaseChange { get; set; }
-        public int  ProjectId { get; set; }
+        public int  ProjectID { get; set; }
         public Project Project { get; set; }
     }
 }

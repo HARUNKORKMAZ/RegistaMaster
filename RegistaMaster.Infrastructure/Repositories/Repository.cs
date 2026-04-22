@@ -26,9 +26,9 @@ namespace RegistaMaster.Infrastructure.Repositories
     }
     public async Task<T> Add<T>(T _object) where T : BaseEntity
     {
-      _object.CreatedBy = session.Id;
+      _object.CreatedBy = session.ID;
       _object.CreatedOn = DateTime.Now;
-      _object.LastModifiedBy = session.Id;
+      _object.LastModifiedBy = session.ID;
       _object.LastModifiedOn = DateTime.Now;
       _object.ObjectStatus = ObjectStatus.NonDeleted;
       _object.Status = Status.Active;
@@ -38,7 +38,7 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public async Task<T> Delete<T>(int id) where T : BaseEntity
     {
-      var obj = await Find<T>(t => t.Id == id);
+      var obj = await Find<T>(t => t.ID == id);
       await Delete(obj);
       return obj;
     }
@@ -49,7 +49,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         foreach (var item in _objectList)
         {
-          item.LastModifiedBy = session.Id;
+          item.LastModifiedBy = session.ID;
           item.LastModifiedOn = DateTime.Now;
           item.ObjectStatus = ObjectStatus.Deleted;
           item.Status = Status.Passive;
@@ -66,7 +66,7 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public async Task<T> GetById<T>(int id) where T : BaseEntity
     {
-      return await Find<T>(t => t.Id == id);
+      return await Find<T>(t => t.ID == id);
     }
 
     public string GetDisplayValue<E>(E value)
@@ -87,7 +87,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        return (Enum.GetValues(typeof(E)).Cast<E>().Select(e=> new SelectModel(){ Text= GetDisplayValue<E>(e),Value = e.ToString(), Id=Convert.ToInt32(e)})).ToList();
+        return (Enum.GetValues(typeof(E)).Cast<E>().Select(e=> new SelectModel(){ Text= GetDisplayValue<E>(e),Value = e.ToString(), ID=Convert.ToInt32(e)})).ToList();
       }
       catch (Exception e)
       {
@@ -136,7 +136,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     public T Update<T>(T _object) where T : BaseEntity
     {
       _object.LastModifiedOn = DateTime.Now;
-      _object.LastModifiedBy = session.Id;
+      _object.LastModifiedBy = session.ID;
       GetTable<T>().Update(_object);
       return _object;
     }
@@ -147,7 +147,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         foreach(var item in _objectList)
         {
-          item.LastModifiedBy = session.Id;
+          item.LastModifiedBy = session.ID;
           item.LastModifiedOn = DateTime.Now;
         }
         GetTable<T>().UpdateRange(_objectList);

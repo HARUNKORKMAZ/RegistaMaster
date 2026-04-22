@@ -36,7 +36,7 @@ namespace RegistaMaster.WebApp.Controllers
     {
       try
       {
-        var model = unitOfWork.ActionRepository.GetList().OrderByDescending(t => t.Id);
+        var model = unitOfWork.ActionRepository.GetList().OrderByDescending(t => t.ID);
         return DataSourceLoader.Load(model, options);
       }
       catch (Exception e)
@@ -172,7 +172,7 @@ namespace RegistaMaster.WebApp.Controllers
     {
       try
       {
-        var model = unitOfWork.ActionNoteRepository.GetList(Id).OrderByDescending(t => t.Id).ToList();
+        var model = unitOfWork.ActionNoteRepository.GetList(Id).OrderByDescending(t => t.ID).ToList();
         return DataSourceLoader.Load(model, loadOption);
 
       }

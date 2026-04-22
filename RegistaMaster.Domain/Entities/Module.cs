@@ -8,7 +8,7 @@ namespace RegistaMaster.Domain.Entities
         public string Name { get; set; }
         [DisplayName("Modül Açıklaması")]
         public string? Description { get; set; }
-        public int ProjectId { get; set; }
+        public int ProjectID { get; set; }
         public Project Project { get; set; }
     }
 }

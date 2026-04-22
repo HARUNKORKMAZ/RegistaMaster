@@ -36,7 +36,7 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public void Delete(int id)
     {
-      var customer = GetNonDeletedAndActive<Customer>(t => t.Id == id);
+      var customer = GetNonDeletedAndActive<Customer>(t => t.ID == id);
       DeleteRange(customer.ToList());
       Delete<Customer>(id);
     }
@@ -47,7 +47,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         return GetNonDeletedAndActive<Customer>(t => t.ObjectStatus == ObjectStatus.NonDeleted).Select(s => new CustomerDTO()
         {
-          Id = s.Id,
+          ID = s.ID,
           Name = s.Name,
           Email = s.Email,
           Address = s.Address
@@ -60,11 +60,5 @@ namespace RegistaMaster.Infrastructure.Repositories
       }
     }
 
-    public async Task<string> Update(Customer customer)
-    {
-      Update(customer);
-      await unitOfWork.SaveChanges();
-      return "1";
-    }
   }
 }

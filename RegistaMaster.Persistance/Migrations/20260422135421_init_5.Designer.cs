@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RegistaMaster.Persistance.RegistaMasterContextes;
 
@@ -11,9 +12,11 @@ using RegistaMaster.Persistance.RegistaMasterContextes;
 namespace RegistaMaster.Persistance.Migrations
 {
     [DbContext(typeof(RegistaMasterContext))]
-    partial class RegistaMasterContextModelSnapshot : ModelSnapshot
+    [Migration("20260422135421_init_5")]
+    partial class init_5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,13 +69,13 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("RepsonsibleID")
                         .HasColumnType("int");
 
-                    b.Property<int>("RequestID")
+                    b.Property<int>("RequestId")
                         .HasColumnType("int");
 
                     b.Property<int>("RequestStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ResponsibleID")
+                    b.Property<int>("ResponsibleId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
@@ -89,7 +92,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasIndex("RepsonsibleID");
 
-                    b.HasIndex("RequestID");
+                    b.HasIndex("RequestId");
 
                     b.ToTable("Actions");
                 });
@@ -102,7 +105,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("ActionID")
+                    b.Property<int>("ActionId")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -133,7 +136,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ActionID");
+                    b.HasIndex("ActionId");
 
                     b.ToTable("ActionNotes");
                 });
@@ -159,7 +162,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("CustomerDescriptionID")
+                    b.Property<int?>("CustomerDescriptionId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -195,7 +198,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("ClientID")
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -217,7 +220,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MemberID")
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<string>("NameSurname")
@@ -227,7 +230,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectID")
+                    b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -235,7 +238,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ProjectID");
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("ErrorLogs");
                 });
@@ -300,7 +303,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectID")
+                    b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("RequestDate")
@@ -319,7 +322,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ProjectID");
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("MyProperty");
                 });
@@ -354,7 +357,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectID")
+                    b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -362,7 +365,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ProjectID");
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("Modules");
                 });
@@ -446,7 +449,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProjectID")
+                    b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -456,7 +459,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasIndex("CustomerID");
 
-                    b.HasIndex("ProjectID");
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("ProjectNotes");
                 });
@@ -472,7 +475,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CategoryID")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -493,16 +496,16 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModuleID")
+                    b.Property<int?>("ModuleId")
                         .HasColumnType("int");
 
-                    b.Property<int>("NotificationID")
+                    b.Property<int>("NotificationId")
                         .HasColumnType("int");
 
                     b.Property<string>("NotificationType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("NotificationTypeID")
+                    b.Property<int?>("NotificationTypeId")
                         .HasColumnType("int");
 
                     b.Property<int>("ObjectStatus")
@@ -517,7 +520,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime>("PlanedEndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ProjectID")
+                    b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<int>("RequestStatus")
@@ -533,16 +536,16 @@ namespace RegistaMaster.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VersionID")
+                    b.Property<int?>("VersionId")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("CustomerID");
 
-                    b.HasIndex("ProjectID");
+                    b.HasIndex("ProjectId");
 
-                    b.HasIndex("VersionID");
+                    b.HasIndex("VersionId");
 
                     b.ToTable("Requests");
                 });
@@ -578,7 +581,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("RequestID")
+                    b.Property<int>("RequestId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -586,7 +589,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("RequestID");
+                    b.HasIndex("RequestId");
 
                     b.ToTable("RequestFiles");
                 });
@@ -664,7 +667,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("ClientID")
+                    b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -682,7 +685,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime>("LoginDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MemberID")
+                    b.Property<int?>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<string>("NameSurname")
@@ -692,7 +695,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectID")
+                    b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -700,7 +703,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ProjectID");
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("UserLogs");
                 });
@@ -716,7 +719,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CetegoryID")
+                    b.Property<int?>("CetegoryId")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -735,7 +738,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModuleID")
+                    b.Property<int?>("ModuleId")
                         .HasColumnType("int");
 
                     b.Property<int>("ObjectStatus")
@@ -748,6 +751,9 @@ namespace RegistaMaster.Persistance.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ProjectID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjetId")
                         .HasColumnType("int");
 
                     b.Property<int>("RequestStatus")
@@ -763,14 +769,14 @@ namespace RegistaMaster.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VersionID")
+                    b.Property<int?>("VersionId")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("ProjectID");
 
-                    b.HasIndex("VersionID");
+                    b.HasIndex("VersionId");
 
                     b.ToTable("UserTasks");
                 });
@@ -811,7 +817,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectID")
+                    b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -819,7 +825,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ProjectID");
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("Versions");
                 });
@@ -834,7 +840,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasOne("RegistaMaster.Domain.Entities.Request", "Request")
                         .WithMany("Actions")
-                        .HasForeignKey("RequestID")
+                        .HasForeignKey("RequestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -847,7 +853,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Action", "Action")
                         .WithMany("ActionNotes")
-                        .HasForeignKey("ActionID")
+                        .HasForeignKey("ActionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -858,7 +864,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("ProjectID")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -869,7 +875,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("ProjectID")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -880,7 +886,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("ProjectID")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -895,7 +901,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany("ProjectNotes")
-                        .HasForeignKey("ProjectID");
+                        .HasForeignKey("ProjectId");
 
                     b.Navigation("Project");
                 });
@@ -908,13 +914,13 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany("Requests")
-                        .HasForeignKey("ProjectID")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("RegistaMaster.Domain.Entities.Version", "Version")
                         .WithMany()
-                        .HasForeignKey("VersionID");
+                        .HasForeignKey("VersionId");
 
                     b.Navigation("Project");
 
@@ -925,7 +931,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Request", null)
                         .WithMany("Files")
-                        .HasForeignKey("RequestID")
+                        .HasForeignKey("RequestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -945,7 +951,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Projects")
                         .WithMany()
-                        .HasForeignKey("ProjectID")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -962,7 +968,7 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasOne("RegistaMaster.Domain.Entities.Version", "Version")
                         .WithMany()
-                        .HasForeignKey("VersionID");
+                        .HasForeignKey("VersionId");
 
                     b.Navigation("Project");
 
@@ -973,7 +979,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("ProjectID")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

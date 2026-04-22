@@ -20,7 +20,7 @@ namespace RegistaMaster.Domain.Entities
         [DataType(DataType.Text)]
         public string? Description { get; set; }
 
-        public int? ProjectId { get; set; }
+        public int? ProjectID { get; set; }
         public Project Project { get; set; }
 
     }

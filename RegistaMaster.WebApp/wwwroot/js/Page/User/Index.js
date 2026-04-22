@@ -140,13 +140,13 @@ function GetList() {
         alignment: 'center',
         lookup: {
           dataSource: DevExpress.data.AspNet.createStore({
-            key: "Id",
+            key: "ID",
             loadUrl: "/User/GetAuthStatus",
             onBeforeSend: function (method, ajaxoptions) {
               ajaxoptions.xhrFields = { withCredentials: true };
             },
           }),
-          valueExpr: "Id",
+          valueExpr: "ID",
           displayExpr: "Value"
         }
       },

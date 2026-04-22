@@ -24,7 +24,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        model.CustomerID = session.CustomerId;
+        model.CustomerID = session.CustomerID;
         await unitOfWork.Repository.Add(model);
         await unitOfWork.SaveChanges();
         return "";
@@ -76,7 +76,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         var users = GetNonDeletedAndActive<User>(t => true).Select(s => new UserCreatedByDTO()
         {
-          Id = s.Id,
+          ID = s.ID,
           Name = s.Name,
           SurName = s.Surname,
         }).ToList();
@@ -95,7 +95,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         return GetNonDeletedAndActive<User>(t => t.ObjectStatus == ObjectStatus.NonDeleted).Select(s => new UserDTO()
         {
-          ID = s.Id,
+          ID = s.ID,
           Name = s.Name,
           Surname = s.Surname,
           Email = s.Email,
@@ -122,7 +122,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         {
           ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
           {
-            Id = item.Id,
+            ID = item.ID,
             Name = item.Name + " " + item.Surname,
           };
           ResponsibleHelpers.Add(helper);
@@ -162,7 +162,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       var user = await GetById<User>(id);
       return new UserDetailDTO()
       {
-        ID = user.Id,
+        ID = user.ID,
         Name = user.Name,
         Surname = user.Surname,
         Username = user.Username,
@@ -177,7 +177,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var model = await unitOfWork.Repository.GetById<User>(unitOfWork.GetSession().Id);
+        var model = await unitOfWork.Repository.GetById<User>(unitOfWork.GetSession().ID);
         var userDetail = new UserDTO()
         {
           Username = model.Username,

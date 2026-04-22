@@ -7,7 +7,7 @@
   var user = session.GetUser();
 }
 <input type="hidden" id="auth" value="@Convert.ToInt32(user.Authorization)" />
-<input type="hidden" id="ID" value="@user.Id" />
+<input type="hidden" id="ID" value="@user.ID" />
 <h1>Projeler</h1>
 
 <style>
@@ -227,7 +227,7 @@
             <input class="form-control" type="hidden" id="DetailModuleProjectID" />
             <div class="col-12">
               <label class="mb-2" style="font-weight:bold;">Proje:<span class="text-danger">*</span></label>
-              <select asp-for="ProjectId" onchange="GetSelectListEdit()" asp-items="@Model.Project" id="DetailModuleProjectName" class="form-control select2" name="ProjectID">
+              <select asp-for="ProjectID" onchange="GetSelectListEdit()" asp-items="@Model.Project" id="DetailModuleProjectName" class="form-control select2" name="ProjectID">
                 <option selected="selected" value="0" disabled>Lütfen Seçiniz</option>
               </select>
             </div>
@@ -268,7 +268,7 @@
             <input class="form-control" type="hidden" id="DetailVersionProjectID" />
             <div class="col-12">
               <label style="font-weight:bold;">Projeler:<span class="text-danger">*</span></label>
-              <select asp-for="ProjectId" onchange="GetSelectListEdit()" asp-items="@Model.Project" id="DetailVersionProjectName" class="form-control select2" name="ProjectID">
+              <select asp-for="ProjectID" onchange="GetSelectListEdit()" asp-items="@Model.Project" id="DetailVersionProjectName" class="form-control select2" name="ProjectID">
                 <option selected="selected" value="0" disabled>Lütfen Seçiniz</option>
               </select>
             </div>

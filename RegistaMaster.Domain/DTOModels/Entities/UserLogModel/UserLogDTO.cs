@@ -10,7 +10,7 @@ namespace RegistaMaster.Domain.DTOModels.Entities.UserLogModel
     public string ProjectKey { get; set; }
     public string NameSurname{ get; set; }
     public DateTime LoginDate { get; set; }
-    public int? ClientId { get; set; }
-    public int? MemberId { get; set; }
+    public int? ClientID { get; set; }
+    public int? MemberID { get; set; }
   }
 }

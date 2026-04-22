@@ -9,7 +9,7 @@ namespace RegistaMaster.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int ID { get; set; }
         [DisplayName("Oluşturulma Tarihi")]
         public DateTime? CreatedOn { get; set; }
         [DisplayName("Güncellenme Tarihi")]

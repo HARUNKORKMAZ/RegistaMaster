@@ -11,7 +11,7 @@ namespace RegistaMaster.Domain.Entities
     [DisplayName("Açıklama")]
     public string Description { get; set; }
     public string? Category { get; set; }
-    public int? CetegoryId { get; set; }
+    public int? CetegoryID { get; set; }
     [DisplayName("Sayfa Linki")]
     public string? PageUrl { get; set; }
     [DisplayName("Başlangıç Tarihi")]
@@ -21,10 +21,10 @@ namespace RegistaMaster.Domain.Entities
     [DisplayName("Durum")]
     public RequestStatus RequestStatus { get; set; }
     [DisplayName("Versiyon")]
-    public int? VersionId { get; set; }
+    public int? VersionID { get; set; }
     public Version Version { get; set; }
-    public int? ModuleId { get; set; }
-    public int ProjetId { get; set; }
+    public int? ModuleID { get; set; }
+    public int ProjectID { get; set; }
     public Project Project { get; set; }
 
 

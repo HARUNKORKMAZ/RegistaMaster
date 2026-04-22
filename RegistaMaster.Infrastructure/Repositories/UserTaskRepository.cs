@@ -54,16 +54,16 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         return  GetNonDeletedAndActive<UserTask>(t => t.ObjectStatus == ObjectStatus.NonDeleted).Select(s => new UserTask()
         {
-          Id = s.Id,
+          ID = s.ID,
           Subject = s.Subject,
           Description = s.Description,
           Category = s.Category,
-          CetegoryId = s.CetegoryId,
+          CetegoryID = s.CetegoryID,
           PageUrl = s.PageUrl,
           RequestStatus = s.RequestStatus,
-          VersionId = s.VersionId,
-          ProjetId = s.ProjetId,
-          ModuleId = s.ModuleId,
+          VersionID = s.VersionID,
+          ProjectID = s.ProjectID,
+          ModuleID = s.ModuleID,
           StartDate = s.StartDate,
           PlannedEndDate = s.PlannedEndDate,
         });
@@ -79,16 +79,16 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var userTask= await GetById<UserTask>(model.Id);
+        var userTask= await GetById<UserTask>(model.ID);
         userTask.Subject = model.Subject;
         userTask.Description = model.Description;
         userTask.Category = model.Category;
-        userTask.CetegoryId = model.CetegoryId;
+        userTask.CetegoryID = model.CetegoryID;
         userTask.PageUrl = model.PageUrl;
         userTask.RequestStatus = model.RequestStatus;
-        userTask.VersionId = model.VersionId;
-        userTask.ProjetId = model.ProjetId;
-        userTask.ModuleId = model.ModuleId;
+        userTask.VersionID = model.VersionID;
+        userTask.ProjectID = model.ProjectID;
+        userTask.ModuleID = model.ModuleID;
         userTask.StartDate = model.StartDate;
         userTask.PlannedEndDate = model.PlannedEndDate;
         Update(userTask);

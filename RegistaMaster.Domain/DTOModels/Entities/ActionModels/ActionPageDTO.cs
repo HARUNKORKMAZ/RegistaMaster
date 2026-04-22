@@ -4,7 +4,7 @@ namespace RegistaMaster.Domain.DTOModels.Entities.ActionModels
 {
   public class ActionPageDTO
   {
-    public int Id { get; set; }
+    public int ID { get; set; }
     public string Responsible { get; set; }
     public DateTime OpeningDate { get; set; }
     public DateTime EndDate { get; set; }
@@ -12,6 +12,6 @@ namespace RegistaMaster.Domain.DTOModels.Entities.ActionModels
     public DateTime CompleteDate { get; set; }
     public string Description { get; set; }
     public ActionStatus ActionStatus { get; set; }
-    public int RequestId { get; set; }
+    public int RequestID { get; set; }
   }
 }

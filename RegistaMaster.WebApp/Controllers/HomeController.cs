@@ -32,10 +32,10 @@ namespace RegistaMaster.WebApp.Controllers
           ViewBag.Chart = await unitOfWork.HomeRepository.AdminChart();
           break;
         case AuthorizationStatus.TeamLeader:
-          ViewBag.Chart = await unitOfWork.HomeRepository.TeamLeaderChart(session.Id);
+          ViewBag.Chart = await unitOfWork.HomeRepository.TeamLeaderChart(session.ID);
           break;
         case AuthorizationStatus.Developer:
-          ViewBag.Chart = await unitOfWork.HomeRepository.DeveloperChart(session.Id);
+          ViewBag.Chart = await unitOfWork.HomeRepository.DeveloperChart(session.ID);
           break;
       }
       ViewBag.Responsible = await unitOfWork.RequestRepository.ResponsibleSelecetList();

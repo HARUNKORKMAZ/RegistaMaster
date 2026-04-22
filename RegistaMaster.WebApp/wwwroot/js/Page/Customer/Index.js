@@ -73,7 +73,7 @@ function GetList() {
       allowDeleting: true,
       allowAdding: true,
       popup: {
-        title: 'Yeni Müşteri Ekle',
+        title: 'Müşteri Düzenle',
         showTitle: true,
         width: 500,
         height: 340,

@@ -26,7 +26,7 @@ namespace RegistaMaster.Infrastructure.Services.EmailServices
     {
       try
       {
-        var customerEmailInfo = unitOfWork.Repository.GetNonDeletedAndActive<EmailInformation>(t => t.CustomerId == UserWhitCustomer.Id).FirstOrDefault();
+        var customerEmailInfo = unitOfWork.Repository.GetNonDeletedAndActive<EmailInformation>(t => t.CustomerID == UserWhitCustomer.ID).FirstOrDefault();
         MailMessage mm = new MailMessage();
         mm.From = new MailAddress(customerEmailInfo?.ContactEmail ?? "", "Bildirim Mail");
         mm.To.Add(email.To);

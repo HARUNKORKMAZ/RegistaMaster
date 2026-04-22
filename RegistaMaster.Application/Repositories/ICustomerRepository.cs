@@ -8,6 +8,5 @@ namespace RegistaMaster.Application.Repositories
     Task<IQueryable<CustomerDTO>> GetList();
     Task<string> CustomerAdd(Customer customer);
     void Delete(int id);
-    Task<string> Update(Customer customer);
   }
 }

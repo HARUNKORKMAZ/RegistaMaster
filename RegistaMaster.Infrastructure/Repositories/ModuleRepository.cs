@@ -56,7 +56,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var module = GetNonDeletedAndActive<Module>(t => t.ProjectId == id);
+        var module = GetNonDeletedAndActive<Module>(t => t.ProjectID == id);
         await DeleteRange(module.ToList());
         return "1";
       }
@@ -73,10 +73,10 @@ namespace RegistaMaster.Infrastructure.Repositories
       {
         return GetNonDeletedAndActive<Module>(t => t.ObjectStatus == ObjectStatus.NonDeleted).Select(s => new ModuleDTO()
         {
-          Id = s.Id,
+          ID = s.ID,
           Name = s.Name,
           Description = s.Description,
-          ProjectID = s.ProjectId
+          ProjectID = s.ProjectID
         });
       }
       catch (Exception)
@@ -90,12 +90,12 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var module = GetNonDeletedAndActive<Module>(t => t.ProjectId == id).Select(p => new ModuleDTO
+        var module = GetNonDeletedAndActive<Module>(t => t.ProjectID == id).Select(p => new ModuleDTO
         {
-          Id = p.Id,
+          ID = p.ID,
           Name = p.Name,
           Description = p.Description,
-          ProjectID = p.ProjectId
+          ProjectID = p.ProjectID
         });
         return JsonConvert.SerializeObject(module);
       }
@@ -117,7 +117,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         {
           ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
           {
-            Id = project.Id,
+            ID = project.ID,
             Name = project.ProjectName
           };
           responsibleHelper.Add(helper);
@@ -150,10 +150,10 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var module = await GetById<Module>(model.Id);
+        var module = await GetById<Module>(model.ID);
         module.Name = model.Name;
         module.Description = model.Description;
-        module.ProjectId = model.ProjectID;
+        module.ProjectID = model.ProjectID;
         Update(module);
         await unitOfWork.SaveChanges();
         return "1";

@@ -43,8 +43,8 @@ namespace RegistaMaster.Infrastructure.Repositories
           NameSurname = s.NameSurname,
           ErrorDate = s.ErrorDate,
           ErrorDesc = s.ErrorDesc,
-          ClientId = s.ClientId,
-          MemberId = s.MemberId,
+          ClientID = s.ClientID,
+          MemberID = s.MemberID,
         });
       }
       catch (Exception e)

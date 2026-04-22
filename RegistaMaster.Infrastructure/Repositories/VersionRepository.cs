@@ -23,13 +23,19 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var olderVersion = GetVersionName(model.ProjectId);
+        var olderVersion = GetVersionName(model.ProjectID);
         if (olderVersion != 0)
         {
           if (model.IsNewVersion)
           {
-            model.Name = "V" + olderVersion.ToString(".#").Replace(',', '.');
-            if (!model.Name.Contains('.'))
+            model.Name = "V" + (olderVersion + 0.1).ToString(".#").Replace(',', '.');
+            if(!model.Name.Contains('.'))
+              model.Name += ".0";
+          }
+          else
+          {
+            model.Name="V"+olderVersion.ToString(".#").Replace(',', '.');
+            if(!model.Name.Contains('.'))
               model.Name += ".0";
           }
         }
@@ -39,21 +45,20 @@ namespace RegistaMaster.Infrastructure.Repositories
           Date = DateTime.Now,
           Description = model.Description,
           DatabaseChange = model.DatabaseChange,
-          ProjectId = model.ProjectId
+          ProjectID = model.ProjectID
         });
         await unitOfWork.SaveChanges();
         return "1";
       }
-      catch (Exception)
+      catch (Exception e)
       {
-
-        throw;
+        throw e;
       }
     }
 
     public async Task<string> DeleteVersionWithProjectId(int Id)
     {
-      var version = GetNonDeletedAndActive<Version>(t => t.ProjectId == Id);
+      var version = GetNonDeletedAndActive<Version>(t => t.ProjectID == Id);
       await DeleteRange(version.ToList());
       return "1";
     }
@@ -63,7 +68,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       try
       {
         var getVersion = await GetById<Version>(Id);
-        var totolRecord = GetNonDeletedAndActive<Version>(t => t.ProjectId == getVersion.ProjectId).Count();
+        var totolRecord = GetNonDeletedAndActive<Version>(t => t.ProjectID == getVersion.ProjectID).Count();
         if (totolRecord <= 1)
           return "0";
         await Delete<Version>(Id);
@@ -81,10 +86,10 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       var model = GetNonDeletedAndActive<Version>(t => t.ObjectStatus == ObjectStatus.NonDeleted && t.Status == Status.Active).Select(s => new VersionDTO()
       {
-        Id = s.Id,
+        ID = s.ID,
         Name = s.Name,
         Date = s.Date,
-        ProjectId = s.ProjectId,
+        ProjectID = s.ProjectID,
         Description = s.Description,
         DatabaseChange = s.DatabaseChange,
       });
@@ -95,12 +100,12 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var version = GetNonDeletedAndActive<Version>(t => t.ProjectId == Id).Select(p => new VersionDTO()
+        var version = GetNonDeletedAndActive<Version>(t => t.ProjectID == Id).Select(p => new VersionDTO()
         {
-          Id = p.Id,
+          ID = p.ID,
           Name = p.Name,
           Date = p.Date,
-          ProjectId = p.ProjectId,
+          ProjectID = p.ProjectID,
           Description = p.Description,
           DatabaseChange = p.DatabaseChange,
         });
@@ -115,11 +120,11 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public double GetVersionName(int Id)
     {
-      var version = GetNonDeletedAndActive<Version>(t => t.ProjectId == Id);
-      if (version.Count() != 0)
+      var versions = GetNonDeletedAndActive<Version>(t => t.ProjectID == Id);
+      if (versions.Count() != 0)
       {
-        var versions = version.OrderBy(t => t.Id).Last();
-        var versionName = versions.Name.Replace('-', ',').Replace("V", "");
+        var version = versions.OrderBy(t => t.ID).Last();
+        var versionName = version.Name.Replace('.', ',').Replace("V", "");
         return Convert.ToDouble(versionName);
       }
       return 0;
@@ -136,7 +141,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var olderVersion = GetVersionName(model.ProjectId);
+        var olderVersion = GetVersionName(model.ProjectID);
 
         if (olderVersion != 0)
         {
@@ -150,10 +155,10 @@ namespace RegistaMaster.Infrastructure.Repositories
             model.Name = "V" + olderVersion.ToString(".#").Replace(',','.');
         }
 
-        var version = await GetById<Version>(model.Id);
+        var version = await GetById<Version>(model.ID);
         version.Name = model.Name;
         version.Description = model.Description;
-        version.ProjectId = model.ProjectId;
+        version.ProjectID = model.ProjectID;
         version.Date = model.Date;
         version.DatabaseChange = model.DatabaseChange;
         Update(version);

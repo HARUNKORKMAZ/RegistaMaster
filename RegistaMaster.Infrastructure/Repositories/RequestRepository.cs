@@ -72,7 +72,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         {
           await unitOfWork.Repository.Add<RequestFile>(new RequestFile()
           {
-            RequestId = Id,
+            RequestID = Id,
             FileName = file.FileName,
             FileUrl = file.FilePath,
           });
@@ -120,7 +120,7 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public void Delete(int Id)
     {
-      var request = GetNonDeletedAndActive<Request>(t => t.Id == Id);
+      var request = GetNonDeletedAndActive<Request>(t => t.ID == Id);
       DeleteRange(request.ToList());
       Delete<Request>(Id);
     }
@@ -129,7 +129,7 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var files = GetNonDeletedAndActive<RequestFile>(t => t.RequestId == id).ToList();
+        var files = GetNonDeletedAndActive<RequestFile>(t => t.RequestID == id).ToList();
         if (files.Count > 0)
           await DeleteRange<RequestFile>(files);
         return "";
@@ -164,17 +164,17 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public async Task<List<ActionDTO>> GetActionDetail(int RequestId)
     {
-      var model = await GetNonDeletedAndActive<Action>(t => t.RequestId == RequestId).Select(s => new ActionDTO()
+      var model = await GetNonDeletedAndActive<Action>(t => t.RequestID == RequestId).Select(s => new ActionDTO()
       {
-        Id = s.Id,
+        ID = s.ID,
         Description = s.Description,
         EndDate = s.EndDate,
         OpeningDate = s.OpeningDate,
-        ResponsibleId = s.ResponsibleId,
+        ResponsibleID = s.ResponsibleID,
         ActionStatus = s.ActionStatus,
         Subject = s.Subject,
         LastModifiedBy = s.LastModifiedBy,
-        RequestId = RequestId,
+        RequestID = RequestId,
         CreateOn = s.CreatedOn
       }).ToListAsync();
       return model;
@@ -190,7 +190,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         {
           ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
           {
-            Id = customer.Id,
+            ID = customer.ID,
             Name = customer.Name
           };
         }
@@ -205,23 +205,23 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public async Task<List<RequestGridDTO>> GetList()
     {
-      var model = GetNonDeletedAndActive<Request>(t => t.ObjectStatus == ObjectStatus.NonDeleted).OrderByDescending(t => t.Id).Select(t => new RequestGridDTO()
+      var model = GetNonDeletedAndActive<Request>(t => t.ObjectStatus == ObjectStatus.NonDeleted).OrderByDescending(t => t.ID).Select(t => new RequestGridDTO()
       {
-        ID = t.Id,
+        ID = t.ID,
         CreatedBy = t.CreatedBy,
         Subject = t.Subject,
-        CategoryID = t.CategoryId,
-        NotificationTypeID = t.NotificationTypeId,
+        CategoryID = t.CategoryID,
+        NotificationTypeID = t.NotificationTypeID,
         PageURL = t.PageUrl,
         PictureURL = t.PictureUrl,
         StartDate = t.StartDate,
         CreatedOn = t.CreatedOn,
         PlannetEndDate = t.PlanedEndDate,
         RequestStatus = t.RequestStatus,
-        NotificationID = t.NotificationId,
-        VersionID = t.VersionId,
-        ModuleID = t.ModuleId,
-        ProjectID = t.ProjectId,
+        NotificationID = t.NotificationID,
+        VersionID = t.VersionID,
+        ModuleID = t.ModuleID,
+        ProjectID = t.ProjectID,
         Description = t.Description
       }).ToList();
       return model;
@@ -231,27 +231,27 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       var requests = await context.Requests
         .Where(t => t.ObjectStatus == ObjectStatus.NonDeleted && t.Status == Status.Active)
-        .OrderByDescending(s => s.Id)
+        .OrderByDescending(s => s.ID)
         .Include(x => x.Files)
         .Select(x => new RequestGridDTO()
         {
-          ID = x.Id,
+          ID = x.ID,
           CreatedBy = x.CreatedBy,
           Subject = x.Subject,
-          CategoryID = x.CategoryId,
-          NotificationTypeID = x.NotificationTypeId,
+          CategoryID = x.CategoryID,
+          NotificationTypeID = x.NotificationTypeID,
           PageURL = x.PageUrl,
           PictureURL = x.PictureUrl,
           StartDate = x.StartDate,
           CreatedOn = x.CreatedOn,
           PlannetEndDate = x.PlanedEndDate,
           RequestStatus = x.RequestStatus,
-          NotificationID = x.NotificationId,
-          VersionID = x.VersionId,
-          ModuleID = x.ModuleId,
-          ProjectID = x.ProjectId,
+          NotificationID = x.NotificationID,
+          VersionID = x.VersionID,
+          ModuleID = x.ModuleID,
+          ProjectID = x.ProjectID,
           Description = x.Description,
-          Files = x.Files.Where(a => a.ObjectStatus == ObjectStatus.NonDeleted && a.Status == Status.Active).OrderByDescending(s => s.Id).ToList()
+          Files = x.Files.Where(a => a.ObjectStatus == ObjectStatus.NonDeleted && a.Status == Status.Active).OrderByDescending(s => s.ID).ToList()
         }).ToListAsync();
       return requests;
     }
@@ -267,7 +267,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         {
           ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
           {
-            Id = module.Id,
+            ID = module.ID,
             Name = module.Name
           };
           ModulesHelpers.Add(helper);
@@ -288,7 +288,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         return GetNonDeletedAndActive<Module>(t => true)
           .Select(s => new SelectListItem
           {
-            Value = s.Id.ToString(),
+            Value = s.ID.ToString(),
             Text = s.Name
           }).ToList();
       }
@@ -301,8 +301,8 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public async Task<List<SelectListItem>> GetModuleList(int id)
     {
-      return GetNonDeletedAndActive<Module>(t => t.ProjectId == id && t.ObjectStatus == ObjectStatus.NonDeleted)
-        .Select(s => new SelectListItem { Value = s.Id.ToString(), Text = s.Name }).ToList();
+      return GetNonDeletedAndActive<Module>(t => t.ProjectID == id && t.ObjectStatus == ObjectStatus.NonDeleted)
+        .Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.Name }).ToList();
     }
 
     public async Task<List<ResponsibleDevextremeSelectListHelper>> GetProject()
@@ -316,7 +316,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         {
           ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
           {
-            Id = item.Id,
+            ID = item.ID,
             Name = item.ProjectName
           };
           ResponsibleHelper.Add(helper);
@@ -336,7 +336,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       try
       {
         return GetNonDeletedAndActive<Project>(t => true)
-          .Select(s => new SelectListItem { Value = s.Id.ToString(), Text = s.ProjectName }).ToList();
+          .Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.ProjectName }).ToList();
 
       }
       catch (Exception)
@@ -353,7 +353,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         return GetNonDeletedAndActive<Version>(t => true)
           .Select(s => new SelectListItem
           {
-            Value = s.Id.ToString(),
+            Value = s.ID.ToString(),
             Text = s.Name
           }).ToList();
       }
@@ -366,11 +366,11 @@ namespace RegistaMaster.Infrastructure.Repositories
 
     public async Task<List<SelectListItem>> GetVersionList(int id)
     {
-      var versions = await GetNonDeletedAndActive<Version>(t => t.ProjectId == id && t.ObjectStatus == ObjectStatus.NonDeleted).ToListAsync();
+      var versions = await GetNonDeletedAndActive<Version>(t => t.ProjectID == id && t.ObjectStatus == ObjectStatus.NonDeleted).ToListAsync();
       var uniqueVersions = versions.GroupBy(v => v.Name)
         .Select(g => g.First())
         .ToList();
-      return uniqueVersions.Select(s => new SelectListItem { Value = s.Id.ToString(), Text = s.Name }).ToList();
+      return uniqueVersions.Select(s => new SelectListItem { Value = s.ID.ToString(), Text = s.Name }).ToList();
     }
 
     public async Task<List<ResponsibleDevextremeSelectListHelper>> GetVersionSelect()
@@ -384,7 +384,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         {
           ResponsibleDevextremeSelectListHelper helper = new ResponsibleDevextremeSelectListHelper()
           {
-            Id = v.Id,
+            ID = v.ID,
             Name = v.Name,
           };
           ModuleHelpers.Add(helper);
@@ -449,15 +449,15 @@ namespace RegistaMaster.Infrastructure.Repositories
     {
       try
       {
-        var actions = GetQueryable<Action>(t => t.RequestId == id && t.ObjectStatus == ObjectStatus.NonDeleted).ToList();
+        var actions = GetQueryable<Action>(t => t.RequestID == id && t.ObjectStatus == ObjectStatus.NonDeleted).ToList();
         foreach (var action in actions)
         {
-          await Delete<Action>(action.Id);
-          var actionNotes = GetNonDeletedAndActive<ActionNote>(t => t.ActionId == action.Id).ToList();
+          await Delete<Action>(action.ID);
+          var actionNotes = GetNonDeletedAndActive<ActionNote>(t => t.ActionID == action.ID).ToList();
           await DeleteRange<ActionNote>(actionNotes);
         }
 
-        var files = GetNonDeletedAndActive<RequestFile>(t => t.RequestId == id).ToList();
+        var files = GetNonDeletedAndActive<RequestFile>(t => t.RequestID == id).ToList();
         if (files.Count > 0)
           await DeleteRange<RequestFile>(files);
         await Delete<Request>(id);
@@ -476,7 +476,7 @@ namespace RegistaMaster.Infrastructure.Repositories
       var list = GetNonDeletedAndActive<User>(t => t.AuthorizationStatus != AuthorizationStatus.Admin)
         .Select(user => new SelectListItem
         {
-          Value = user.Id.ToString(),
+          Value = user.ID.ToString(),
           Text = user.Fullname,
         }).ToList();
       return list;
@@ -485,11 +485,11 @@ namespace RegistaMaster.Infrastructure.Repositories
     public async Task<Request> UpdateRequest(RequestGridDTO model)
     {
       var request = await GetById<Request>(model.ID);
-      request.NotificationTypeId = model.NotificationTypeID;
-      request.CategoryId = model.CategoryID;
-      request.ProjectId = model.ProjectID;
-      request.ModuleId = model.ModuleID;
-      request.VersionId = model.VersionID;
+      request.NotificationTypeID = model.NotificationTypeID;
+      request.CategoryID = model.CategoryID;
+      request.ProjectID = model.ProjectID;
+      request.ModuleID = model.ModuleID;
+      request.VersionID = model.VersionID;
       request.Subject = model.Subject;
       request.Description = model.Description;
       request.PageUrl = model.PageURL;

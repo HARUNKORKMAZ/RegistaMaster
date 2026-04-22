@@ -20,7 +20,7 @@ namespace RegistaMaster.Domain.Entities
         public string? Email { get; set; }
         public string? ApiKey { get; set; }
         [DisplayName("Müşteri Tanım No")]
-        public int? CustomerDescriptionId { get; set; }
+        public int? CustomerDescriptionID { get; set; }
         public ICollection<Request> Requests { get; set; }
         public ICollection<ProjectNote> ProjectNotes { get; set; }
 

@@ -4,6 +4,6 @@
     {
         public string FileName { get; set; }
         public string FileUrl { get; set; }
-        public int RequestId { get; set; }
+        public int RequestID { get; set; }
     }
 }
