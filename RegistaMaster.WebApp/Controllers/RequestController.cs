@@ -275,5 +275,10 @@ namespace RegistaMaster.WebApp.Controllers
       }
     }
 
+    public async Task<List<SelectListItem>> GetCategorySelect()
+    {
+      return await unitOfWork.RequestRepository.CategorySelectList();
+    }
+
   }
 }

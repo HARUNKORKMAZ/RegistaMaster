@@ -36,7 +36,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ActionStatus")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ComplateDate")
+                    b.Property<DateTime>("CompleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("CreatedBy")
@@ -63,9 +63,6 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime>("OpeningDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("RepsonsibleID")
-                        .HasColumnType("int");
-
                     b.Property<int>("RequestID")
                         .HasColumnType("int");
 
@@ -87,9 +84,9 @@ namespace RegistaMaster.Persistance.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("RepsonsibleID");
-
                     b.HasIndex("RequestID");
+
+                    b.HasIndex("ResponsibleID");
 
                     b.ToTable("Actions");
                 });
@@ -826,21 +823,21 @@ namespace RegistaMaster.Persistance.Migrations
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.Action", b =>
                 {
-                    b.HasOne("RegistaMaster.Domain.Entities.User", "Repsonsible")
-                        .WithMany()
-                        .HasForeignKey("RepsonsibleID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("RegistaMaster.Domain.Entities.Request", "Request")
                         .WithMany("Actions")
                         .HasForeignKey("RequestID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Repsonsible");
+                    b.HasOne("RegistaMaster.Domain.Entities.User", "Responsible")
+                        .WithMany()
+                        .HasForeignKey("ResponsibleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Request");
+
+                    b.Navigation("Responsible");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.ActionNote", b =>

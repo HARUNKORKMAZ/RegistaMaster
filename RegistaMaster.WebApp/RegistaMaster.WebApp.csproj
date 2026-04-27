@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Documents\RequestDocs\" />
     <Folder Include="wwwroot\Modernize\Img\RequestFile\" />
   </ItemGroup>
 

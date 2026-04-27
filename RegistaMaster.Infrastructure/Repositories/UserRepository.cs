@@ -78,7 +78,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         {
           ID = s.ID,
           Name = s.Name,
-          SurName = s.Surname,
+          Surname = s.Surname,
         }).ToList();
         return users;
       }

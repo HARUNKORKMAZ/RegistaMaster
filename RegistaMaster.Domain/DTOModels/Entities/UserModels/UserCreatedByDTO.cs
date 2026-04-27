@@ -4,7 +4,7 @@
   {
     public int ID { get; set; }
     public string Name { get; set; }
-    public string SurName { get; set; }
-    public string FullName => Name + " " + SurName;
+    public string Surname { get; set; }
+    public string Fullname => Name + " " + Surname;
   }
 }

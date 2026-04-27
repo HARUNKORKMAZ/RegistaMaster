@@ -5,12 +5,12 @@ namespace RegistaMaster.Domain.Enums
     public enum ActionStatus
     {
         [Display(Name = "Başlamadı")]
-        NotStarted = 0,
+        notStarted = 0,
         [Display(Name = "Devam Ediyor")]
-        Continued = 1,
+    Contiuned = 1,
         [Display(Name = "Tamamlandı")]
         Completed = 2,
         [Display(Name = "İptal/Reddedildi")]
-        Canceled = 3
+    Cancel = 3
     }
 }

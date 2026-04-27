@@ -12,8 +12,8 @@ using RegistaMaster.Persistance.RegistaMasterContextes;
 namespace RegistaMaster.Persistance.Migrations
 {
     [DbContext(typeof(RegistaMasterContext))]
-    [Migration("20260420140247_init_3")]
-    partial class init_3
+    [Migration("20260427135819_init_2")]
+    partial class init_2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,11 @@ namespace RegistaMaster.Persistance.Migrations
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.Action", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<int>("ActionPriorityStatus")
                         .HasColumnType("int");
@@ -39,7 +39,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ActionStatus")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ComplateDate")
+                    b.Property<DateTime>("CompleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("CreatedBy")
@@ -66,16 +66,13 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime>("OpeningDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("RepsonsibleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RequestId")
+                    b.Property<int>("RequestID")
                         .HasColumnType("int");
 
                     b.Property<int>("RequestStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ResponsibleId")
+                    b.Property<int>("ResponsibleID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
@@ -88,24 +85,24 @@ namespace RegistaMaster.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("RepsonsibleId");
+                    b.HasIndex("RequestID");
 
-                    b.HasIndex("RequestId");
+                    b.HasIndex("ResponsibleID");
 
                     b.ToTable("Actions");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.ActionNote", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("ActionId")
+                    b.Property<int>("ActionID")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -134,20 +131,20 @@ namespace RegistaMaster.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("ActionId");
+                    b.HasIndex("ActionID");
 
                     b.ToTable("ActionNotes");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.Customer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Address")
                         .HasMaxLength(600)
@@ -162,7 +159,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("CustomerDescriptionId")
+                    b.Property<int?>("CustomerDescriptionID")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -185,20 +182,20 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.ErrorLog", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("ClientId")
+                    b.Property<int>("ClientID")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -220,7 +217,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MemberId")
+                    b.Property<int>("MemberID")
                         .HasColumnType("int");
 
                     b.Property<string>("NameSurname")
@@ -230,26 +227,26 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("ProjectID");
 
                     b.ToTable("ErrorLogs");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.FoodChart", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
@@ -275,18 +272,18 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Responsibles");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.HealthCheck", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
@@ -303,7 +300,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("RequestDate")
@@ -320,20 +317,20 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("ProjectID");
 
                     b.ToTable("MyProperty");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.Module", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
@@ -357,26 +354,26 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("ProjectID");
 
                     b.ToTable("Modules");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.Project", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
@@ -407,18 +404,18 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.ProjectNote", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
@@ -426,7 +423,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("CustomerId")
+                    b.Property<int?>("CustomerID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
@@ -449,33 +446,33 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProjectId")
+                    b.Property<int?>("ProjectID")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerID");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("ProjectID");
 
                     b.ToTable("ProjectNotes");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.Request", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int?>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -484,7 +481,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("CustomerId")
+                    b.Property<int?>("CustomerID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -496,16 +493,16 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModuleId")
+                    b.Property<int?>("ModuleID")
                         .HasColumnType("int");
 
-                    b.Property<int>("NotificationId")
+                    b.Property<int>("NotificationID")
                         .HasColumnType("int");
 
                     b.Property<string>("NotificationType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("NotificationTypeId")
+                    b.Property<int?>("NotificationTypeID")
                         .HasColumnType("int");
 
                     b.Property<int>("ObjectStatus")
@@ -520,7 +517,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime>("PlanedEndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
                     b.Property<int>("RequestStatus")
@@ -536,27 +533,27 @@ namespace RegistaMaster.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VersionId")
+                    b.Property<int?>("VersionID")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerID");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("ProjectID");
 
-                    b.HasIndex("VersionId");
+                    b.HasIndex("VersionID");
 
                     b.ToTable("Requests");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.RequestFile", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
@@ -581,26 +578,26 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("RequestId")
+                    b.Property<int>("RequestID")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("RequestId");
+                    b.HasIndex("RequestID");
 
                     b.ToTable("RequestFiles");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<int>("AuthorizationStatus")
                         .HasColumnType("int");
@@ -652,7 +649,7 @@ namespace RegistaMaster.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.HasIndex("CustomerID");
 
@@ -661,13 +658,13 @@ namespace RegistaMaster.Persistance.Migrations
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.UserLog", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("ClientId")
+                    b.Property<int?>("ClientID")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -685,7 +682,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime>("LoginDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MemberId")
+                    b.Property<int?>("MemberID")
                         .HasColumnType("int");
 
                     b.Property<string>("NameSurname")
@@ -695,31 +692,31 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("ProjectID");
 
                     b.ToTable("UserLogs");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.UserTask", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CetegoryId")
+                    b.Property<int?>("CetegoryID")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -738,7 +735,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ModuleId")
+                    b.Property<int?>("ModuleID")
                         .HasColumnType("int");
 
                     b.Property<int>("ObjectStatus")
@@ -750,10 +747,7 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime>("PlannedEndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProjetId")
+                    b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
                     b.Property<int>("RequestStatus")
@@ -769,25 +763,25 @@ namespace RegistaMaster.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VersionId")
+                    b.Property<int?>("VersionID")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("ProjectID");
 
-                    b.HasIndex("VersionId");
+                    b.HasIndex("VersionID");
 
                     b.ToTable("UserTasks");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.Version", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
@@ -795,11 +789,11 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("DatabaseChange")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("DatebaseChange")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -817,43 +811,43 @@ namespace RegistaMaster.Persistance.Migrations
                     b.Property<int>("ObjectStatus")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("ProjectID")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("ProjectId");
+                    b.HasIndex("ProjectID");
 
                     b.ToTable("Versions");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.Action", b =>
                 {
-                    b.HasOne("RegistaMaster.Domain.Entities.User", "Repsonsible")
-                        .WithMany()
-                        .HasForeignKey("RepsonsibleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("RegistaMaster.Domain.Entities.Request", "Request")
                         .WithMany("Actions")
-                        .HasForeignKey("RequestId")
+                        .HasForeignKey("RequestID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Repsonsible");
+                    b.HasOne("RegistaMaster.Domain.Entities.User", "Responsible")
+                        .WithMany()
+                        .HasForeignKey("ResponsibleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Request");
+
+                    b.Navigation("Responsible");
                 });
 
             modelBuilder.Entity("RegistaMaster.Domain.Entities.ActionNote", b =>
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Action", "Action")
                         .WithMany("ActionNotes")
-                        .HasForeignKey("ActionId")
+                        .HasForeignKey("ActionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -864,7 +858,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("ProjectId")
+                        .HasForeignKey("ProjectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -875,7 +869,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("ProjectId")
+                        .HasForeignKey("ProjectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -886,7 +880,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("ProjectId")
+                        .HasForeignKey("ProjectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -897,11 +891,11 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Customer", null)
                         .WithMany("ProjectNotes")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerID");
 
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany("ProjectNotes")
-                        .HasForeignKey("ProjectId");
+                        .HasForeignKey("ProjectID");
 
                     b.Navigation("Project");
                 });
@@ -910,17 +904,17 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Customer", null)
                         .WithMany("Requests")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerID");
 
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany("Requests")
-                        .HasForeignKey("ProjectId")
+                        .HasForeignKey("ProjectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("RegistaMaster.Domain.Entities.Version", "Version")
                         .WithMany()
-                        .HasForeignKey("VersionId");
+                        .HasForeignKey("VersionID");
 
                     b.Navigation("Project");
 
@@ -931,7 +925,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Request", null)
                         .WithMany("Files")
-                        .HasForeignKey("RequestId")
+                        .HasForeignKey("RequestID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -951,7 +945,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Projects")
                         .WithMany()
-                        .HasForeignKey("ProjectId")
+                        .HasForeignKey("ProjectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -962,13 +956,13 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("ProjectId")
+                        .HasForeignKey("ProjectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("RegistaMaster.Domain.Entities.Version", "Version")
                         .WithMany()
-                        .HasForeignKey("VersionId");
+                        .HasForeignKey("VersionID");
 
                     b.Navigation("Project");
 
@@ -979,7 +973,7 @@ namespace RegistaMaster.Persistance.Migrations
                 {
                     b.HasOne("RegistaMaster.Domain.Entities.Project", "Project")
                         .WithMany()
-                        .HasForeignKey("ProjectId")
+                        .HasForeignKey("ProjectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

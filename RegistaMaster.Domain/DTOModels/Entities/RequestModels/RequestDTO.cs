@@ -18,7 +18,6 @@ namespace RegistaMaster.Domain.DTOModels.Entities.RequestModels
     public int ProjectID { get; set; }
     public int NotificationTypeID { get; set; }
     public int? CategoryID { get; set; }
-    public int LastModifiedByID { get; set; }
     public int LastModifiedBy { get; set; }
     public DateTime? LastModifiedOn { get; set; }
     public DateTime? CreatedOn { get; set; }

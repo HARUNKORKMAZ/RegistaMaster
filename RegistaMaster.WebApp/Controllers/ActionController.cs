@@ -60,7 +60,7 @@ namespace RegistaMaster.WebApp.Controllers
       }
     }
 
-    public async Task<IActionResult> GetPriorityActionStatus()
+    public async Task<IActionResult> GetPriortyActionStatus()
     {
       try
       {
@@ -89,17 +89,17 @@ namespace RegistaMaster.WebApp.Controllers
       }
     }
 
-    public async Task<object> GetCreateBy(DataSourceLoadOptions loadOption)
+    public async Task<object> GetCreatedBy(DataSourceLoadOptions loadOption)
     {
       try
       {
         var model = await unitOfWork.UserRepository.GetCreatedBy();
         return DataSourceLoader.Load(model, loadOption);
       }
-      catch (Exception)
+      catch (Exception e)
       {
 
-        throw;
+        throw e;
       }
     }
     public async Task<object> GetRequest(DataSourceLoadOptions loadOption)

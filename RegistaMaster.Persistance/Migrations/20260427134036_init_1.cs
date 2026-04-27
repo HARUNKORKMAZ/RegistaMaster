@@ -15,13 +15,13 @@ namespace RegistaMaster.Persistance.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(600)", maxLength: 600, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApiKey = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustomerDescriptionId = table.Column<int>(type: "int", nullable: true),
+                    CustomerDescriptionID = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -31,14 +31,14 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.PrimaryKey("PK_Customers", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Projects",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProjectName = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -52,23 +52,17 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projects", x => x.Id);
+                    table.PrimaryKey("PK_Projects", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Responsibles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AuthorizonStatus = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PersonNumber = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -78,12 +72,38 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Responsibles", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AuthorizationStatus = table.Column<int>(type: "int", nullable: false),
+                    CustomerID = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    LastModifiedBy = table.Column<int>(type: "int", nullable: false),
+                    ObjectStatus = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Users_Customers_CustomerId",
-                        column: x => x.CustomerId,
+                        name: "FK_Users_Customers_CustomerID",
+                        column: x => x.CustomerID,
                         principalTable: "Customers",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -91,14 +111,14 @@ namespace RegistaMaster.Persistance.Migrations
                 name: "ErrorLogs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameSurname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ErrorDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ErrorDesc = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ClientId = table.Column<int>(type: "int", nullable: false),
-                    MemberId = table.Column<int>(type: "int", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: false),
+                    ClientID = table.Column<int>(type: "int", nullable: false),
+                    MemberID = table.Column<int>(type: "int", nullable: false),
+                    ProjectID = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -108,12 +128,12 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ErrorLogs", x => x.Id);
+                    table.PrimaryKey("PK_ErrorLogs", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_ErrorLogs_Projects_ProjectId",
-                        column: x => x.ProjectId,
+                        name: "FK_ErrorLogs_Projects_ProjectID",
+                        column: x => x.ProjectID,
                         principalTable: "Projects",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -121,11 +141,11 @@ namespace RegistaMaster.Persistance.Migrations
                 name: "Modules",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProjectId = table.Column<int>(type: "int", nullable: false),
+                    ProjectID = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -135,12 +155,12 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Modules", x => x.Id);
+                    table.PrimaryKey("PK_Modules", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Modules_Projects_ProjectId",
-                        column: x => x.ProjectId,
+                        name: "FK_Modules_Projects_ProjectID",
+                        column: x => x.ProjectID,
                         principalTable: "Projects",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -148,12 +168,12 @@ namespace RegistaMaster.Persistance.Migrations
                 name: "MyProperty",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RequestStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RequestDesc = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RequestDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: false),
+                    ProjectID = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -163,12 +183,12 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MyProperty", x => x.Id);
+                    table.PrimaryKey("PK_MyProperty", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_MyProperty_Projects_ProjectId",
-                        column: x => x.ProjectId,
+                        name: "FK_MyProperty_Projects_ProjectID",
+                        column: x => x.ProjectID,
                         principalTable: "Projects",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -176,13 +196,13 @@ namespace RegistaMaster.Persistance.Migrations
                 name: "ProjectNotes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NoteType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: true),
-                    CustomerId = table.Column<int>(type: "int", nullable: true),
+                    ProjectID = table.Column<int>(type: "int", nullable: true),
+                    CustomerID = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -192,30 +212,30 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectNotes", x => x.Id);
+                    table.PrimaryKey("PK_ProjectNotes", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_ProjectNotes_Customers_CustomerId",
-                        column: x => x.CustomerId,
+                        name: "FK_ProjectNotes_Customers_CustomerID",
+                        column: x => x.CustomerID,
                         principalTable: "Customers",
-                        principalColumn: "Id");
+                        principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_ProjectNotes_Projects_ProjectId",
-                        column: x => x.ProjectId,
+                        name: "FK_ProjectNotes_Projects_ProjectID",
+                        column: x => x.ProjectID,
                         principalTable: "Projects",
-                        principalColumn: "Id");
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
                 name: "UserLogs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameSurname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LoginDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ClientId = table.Column<int>(type: "int", nullable: true),
-                    MemberId = table.Column<int>(type: "int", nullable: true),
-                    ProjectId = table.Column<int>(type: "int", nullable: false),
+                    ClientID = table.Column<int>(type: "int", nullable: true),
+                    MemberID = table.Column<int>(type: "int", nullable: true),
+                    ProjectID = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -225,12 +245,12 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserLogs", x => x.Id);
+                    table.PrimaryKey("PK_UserLogs", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_UserLogs_Projects_ProjectId",
-                        column: x => x.ProjectId,
+                        name: "FK_UserLogs_Projects_ProjectID",
+                        column: x => x.ProjectID,
                         principalTable: "Projects",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -238,13 +258,13 @@ namespace RegistaMaster.Persistance.Migrations
                 name: "Versions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DatebaseChange = table.Column<bool>(type: "bit", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: false),
+                    DatabaseChange = table.Column<bool>(type: "bit", nullable: false),
+                    ProjectID = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -254,12 +274,12 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Versions", x => x.Id);
+                    table.PrimaryKey("PK_Versions", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Versions_Projects_ProjectId",
-                        column: x => x.ProjectId,
+                        name: "FK_Versions_Projects_ProjectID",
+                        column: x => x.ProjectID,
                         principalTable: "Projects",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -267,24 +287,24 @@ namespace RegistaMaster.Persistance.Migrations
                 name: "Requests",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    CategoryID = table.Column<int>(type: "int", nullable: true),
                     NotificationType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NotificationTypeId = table.Column<int>(type: "int", nullable: true),
+                    NotificationTypeID = table.Column<int>(type: "int", nullable: true),
                     PageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PlanedEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RequestStatus = table.Column<int>(type: "int", nullable: false),
-                    NotificationId = table.Column<int>(type: "int", nullable: false),
-                    VersionId = table.Column<int>(type: "int", nullable: true),
-                    ModuleId = table.Column<int>(type: "int", nullable: true),
-                    ProjectId = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: true),
+                    NotificationID = table.Column<int>(type: "int", nullable: false),
+                    VersionID = table.Column<int>(type: "int", nullable: true),
+                    ModuleID = table.Column<int>(type: "int", nullable: true),
+                    ProjectID = table.Column<int>(type: "int", nullable: false),
+                    CustomerID = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -294,43 +314,83 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Requests", x => x.Id);
+                    table.PrimaryKey("PK_Requests", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Requests_Customers_CustomerId",
-                        column: x => x.CustomerId,
+                        name: "FK_Requests_Customers_CustomerID",
+                        column: x => x.CustomerID,
                         principalTable: "Customers",
-                        principalColumn: "Id");
+                        principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_Requests_Projects_ProjectId",
-                        column: x => x.ProjectId,
+                        name: "FK_Requests_Projects_ProjectID",
+                        column: x => x.ProjectID,
                         principalTable: "Projects",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Requests_Versions_VersionId",
-                        column: x => x.VersionId,
+                        name: "FK_Requests_Versions_VersionID",
+                        column: x => x.VersionID,
                         principalTable: "Versions",
-                        principalColumn: "Id");
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserTasks",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CetegoryID = table.Column<int>(type: "int", nullable: true),
+                    PageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PlannedEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RequestStatus = table.Column<int>(type: "int", nullable: false),
+                    VersionID = table.Column<int>(type: "int", nullable: true),
+                    ModuleID = table.Column<int>(type: "int", nullable: true),
+                    ProjectID = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    LastModifiedBy = table.Column<int>(type: "int", nullable: false),
+                    ObjectStatus = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserTasks", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_UserTasks_Projects_ProjectID",
+                        column: x => x.ProjectID,
+                        principalTable: "Projects",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserTasks_Versions_VersionID",
+                        column: x => x.VersionID,
+                        principalTable: "Versions",
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Actions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ResponsibleId = table.Column<int>(type: "int", nullable: false),
-                    RepsonsibleId = table.Column<int>(type: "int", nullable: false),
+                    ResponsibleID = table.Column<int>(type: "int", nullable: false),
+                    RepsonsibleID = table.Column<int>(type: "int", nullable: false),
                     OpeningDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ComplateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CompleteDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ActionStatus = table.Column<int>(type: "int", nullable: false),
                     RequestStatus = table.Column<int>(type: "int", nullable: false),
                     ActionPriorityStatus = table.Column<int>(type: "int", nullable: false),
-                    RequestId = table.Column<int>(type: "int", nullable: false),
+                    RequestID = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -340,30 +400,30 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Actions", x => x.Id);
+                    table.PrimaryKey("PK_Actions", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Actions_Requests_RequestId",
-                        column: x => x.RequestId,
+                        name: "FK_Actions_Requests_RequestID",
+                        column: x => x.RequestID,
                         principalTable: "Requests",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Actions_Users_RepsonsibleId",
-                        column: x => x.RepsonsibleId,
+                        name: "FK_Actions_Users_RepsonsibleID",
+                        column: x => x.RepsonsibleID,
                         principalTable: "Users",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "RequestFile",
+                name: "RequestFiles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FileUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RequestId = table.Column<int>(type: "int", nullable: false),
+                    RequestID = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -373,22 +433,22 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RequestFile", x => x.Id);
+                    table.PrimaryKey("PK_RequestFiles", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_RequestFile_Requests_RequestId",
-                        column: x => x.RequestId,
+                        name: "FK_RequestFiles_Requests_RequestID",
+                        column: x => x.RequestID,
                         principalTable: "Requests",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ActionNote",
+                name: "ActionNotes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ActionId = table.Column<int>(type: "int", nullable: false),
+                    ActionID = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -400,96 +460,106 @@ namespace RegistaMaster.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActionNote", x => x.Id);
+                    table.PrimaryKey("PK_ActionNotes", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_ActionNote_Actions_ActionId",
-                        column: x => x.ActionId,
+                        name: "FK_ActionNotes_Actions_ActionID",
+                        column: x => x.ActionID,
                         principalTable: "Actions",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActionNote_ActionId",
-                table: "ActionNote",
-                column: "ActionId");
+                name: "IX_ActionNotes_ActionID",
+                table: "ActionNotes",
+                column: "ActionID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Actions_RepsonsibleId",
+                name: "IX_Actions_RepsonsibleID",
                 table: "Actions",
-                column: "RepsonsibleId");
+                column: "RepsonsibleID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Actions_RequestId",
+                name: "IX_Actions_RequestID",
                 table: "Actions",
-                column: "RequestId");
+                column: "RequestID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ErrorLogs_ProjectId",
+                name: "IX_ErrorLogs_ProjectID",
                 table: "ErrorLogs",
-                column: "ProjectId");
+                column: "ProjectID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Modules_ProjectId",
+                name: "IX_Modules_ProjectID",
                 table: "Modules",
-                column: "ProjectId");
+                column: "ProjectID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MyProperty_ProjectId",
+                name: "IX_MyProperty_ProjectID",
                 table: "MyProperty",
-                column: "ProjectId");
+                column: "ProjectID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectNotes_CustomerId",
+                name: "IX_ProjectNotes_CustomerID",
                 table: "ProjectNotes",
-                column: "CustomerId");
+                column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectNotes_ProjectId",
+                name: "IX_ProjectNotes_ProjectID",
                 table: "ProjectNotes",
-                column: "ProjectId");
+                column: "ProjectID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RequestFile_RequestId",
-                table: "RequestFile",
-                column: "RequestId");
+                name: "IX_RequestFiles_RequestID",
+                table: "RequestFiles",
+                column: "RequestID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_CustomerId",
+                name: "IX_Requests_CustomerID",
                 table: "Requests",
-                column: "CustomerId");
+                column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_ProjectId",
+                name: "IX_Requests_ProjectID",
                 table: "Requests",
-                column: "ProjectId");
+                column: "ProjectID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_VersionId",
+                name: "IX_Requests_VersionID",
                 table: "Requests",
-                column: "VersionId");
+                column: "VersionID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserLogs_ProjectId",
+                name: "IX_UserLogs_ProjectID",
                 table: "UserLogs",
-                column: "ProjectId");
+                column: "ProjectID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_CustomerId",
+                name: "IX_Users_CustomerID",
                 table: "Users",
-                column: "CustomerId");
+                column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Versions_ProjectId",
+                name: "IX_UserTasks_ProjectID",
+                table: "UserTasks",
+                column: "ProjectID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserTasks_VersionID",
+                table: "UserTasks",
+                column: "VersionID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Versions_ProjectID",
                 table: "Versions",
-                column: "ProjectId");
+                column: "ProjectID");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ActionNote");
+                name: "ActionNotes");
 
             migrationBuilder.DropTable(
                 name: "ErrorLogs");
@@ -504,10 +574,16 @@ namespace RegistaMaster.Persistance.Migrations
                 name: "ProjectNotes");
 
             migrationBuilder.DropTable(
-                name: "RequestFile");
+                name: "RequestFiles");
+
+            migrationBuilder.DropTable(
+                name: "Responsibles");
 
             migrationBuilder.DropTable(
                 name: "UserLogs");
+
+            migrationBuilder.DropTable(
+                name: "UserTasks");
 
             migrationBuilder.DropTable(
                 name: "Actions");

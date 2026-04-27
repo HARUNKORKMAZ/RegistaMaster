@@ -42,7 +42,7 @@ namespace RegistaMaster.WebApp.Controllers
       return View();
     }
 
-    public async Task<string> GetDashboad()
+    public async Task<string> GetDashboard()
     {
       try
       {

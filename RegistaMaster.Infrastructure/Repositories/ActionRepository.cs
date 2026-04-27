@@ -107,17 +107,17 @@ namespace RegistaMaster.Infrastructure.Repositories
         var request = await GetById<Request>(model.RequestID);
         if (request.RequestStatus == RequestStatus.Waiting)
         {
-          var cancelledActions = GetQueryable<Action>(t => t.RequestID == model.RequestID && t.Status == Status.Active && t.ObjectStatus == ObjectStatus.NonDeleted && t.ActionStatus == ActionStatus.Canceled).ToList();
+          var cancelledActions = GetQueryable<Action>(t => t.RequestID == model.RequestID && t.Status == Status.Active && t.ObjectStatus == ObjectStatus.NonDeleted && t.ActionStatus == ActionStatus.Cancel).ToList();
           foreach (var action in cancelledActions)
           {
-            action.Status = Status.Active;
+            action.Status = Status.Passive;
           }
           await UpdateRange(cancelledActions);
           request.RequestStatus = RequestStatus.Start;
           Update(request);
           await unitOfWork.SaveChanges();
         }
-        model.ActionStatus = ActionStatus.NotStarted;
+        model.ActionStatus = ActionStatus.notStarted;
         await unitOfWork.Repository.Add(model);
         await unitOfWork.SaveChanges();
         return "1";
@@ -136,7 +136,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         var action = await GetById<Action>(model.ID);
         action.ActionStatus = model.ActionStatus;
         action.StartDate = model.StartDate;
-        action.ComplateDate = model.CompleteDate;
+        action.CompleteDate = model.CompleteDate;
         unitOfWork.Repository.Update(action);
         await unitOfWork.SaveChanges();
 
@@ -144,9 +144,9 @@ namespace RegistaMaster.Infrastructure.Repositories
 
         var requestActions = GetQueryable<Action>(t => t.RequestID == action.RequestID && t.Status == Status.Active && t.ActionStatus != ActionStatus.Completed);
 
-        var cancelledActions = requestActions.Where(x => x.ActionStatus == ActionStatus.Canceled).Count();
+        var cancelledActions = requestActions.Where(x => x.ActionStatus == ActionStatus.Cancel).Count();
 
-        var waitingActions = requestActions.Where(x => x.ActionStatus == ActionStatus.Continued || x.ActionStatus == ActionStatus.NotStarted).Count();
+        var waitingActions = requestActions.Where(x => x.ActionStatus == ActionStatus.Contiuned || x.ActionStatus == ActionStatus.notStarted).Count();
 
         if (cancelledActions > 0 && waitingActions == 0)
         {
@@ -156,7 +156,7 @@ namespace RegistaMaster.Infrastructure.Repositories
           return "2";
         }
 
-        var countiunedActions = requestActions.Where(x => x.ActionStatus == ActionStatus.Continued).Count();
+        var countiunedActions = requestActions.Where(x => x.ActionStatus == ActionStatus.Contiuned).Count();
 
         if(request.RequestStatus != RequestStatus.Start && countiunedActions > 0)
         {
@@ -200,7 +200,7 @@ namespace RegistaMaster.Infrastructure.Repositories
         return await GetQueryable<Action>(t=>t.ID==Id && t.ObjectStatus == ObjectStatus.NonDeleted).Select(s=>new ActionPageDTO
         {
           ID = s.ID,
-          Responsible = s.Repsonsible.Fullname,
+          Responsible = s.Responsible.Fullname,
           OpeningDate = s.OpeningDate,
           EndDate = s.EndDate,
           Description = s.Description,
@@ -241,7 +241,7 @@ namespace RegistaMaster.Infrastructure.Repositories
             CreateOn = item.CreatedOn,
             CreatedBy = item.CreatedBy,
             StartDate = item.StartDate,
-            CompleteDate = item.ComplateDate,
+            CompleteDate = item.CompleteDate,
           };
           actionList.Add(actions);
         }
@@ -271,7 +271,7 @@ namespace RegistaMaster.Infrastructure.Repositories
           ActionPriorityStatus = s.ActionPriorityStatus,
           CreatedBy = s.CreatedBy,
           StartDate = s.StartDate,
-          CompleteDate = s.ComplateDate
+          CompleteDate = s.CompleteDate
         });
       }
       catch (Exception e)

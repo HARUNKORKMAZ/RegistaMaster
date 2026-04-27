@@ -65,6 +65,7 @@ namespace RegistaMaster.WebApp.Controllers
     {
       ViewBag.CreatedBy= unitOfWork.ProjectNoteRepository.CreatedBySelectList();
       var model = new ProjectDTO();
+      model.Project = await unitOfWork.ProjectRepository.GetProjectSelect();
       return View(model);
     }
 
