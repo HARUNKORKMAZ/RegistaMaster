@@ -15,7 +15,7 @@ namespace RegistaMaster.Domain.DTOModels.Entities.RequestModels
     public string? PictureURL { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime? CreatedOn { get; set; }
-    public DateTime PlannetEndDate { get; set; }
+    public DateTime PlanedEndDate { get; set; }
     public RequestStatus RequestStatus { get; set; }
     public int NotificationID { get; set; }
     public int? VersionID { get; set; }
